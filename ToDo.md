@@ -2,7 +2,8 @@
 
 ## Tasks
 
-- [ ✘ ] Make Asmmetrical Encryption
+- [ ✘ ] Make file managment
+- [ ✘ ] Make encoding in different formats
 
 ## In Progress
 
@@ -11,3 +12,4 @@
 ## Completed
 
 - [ ✓ ] Make Symmetrical Encryption
+- [ ✓ ] Make Asmmetrical Encryption

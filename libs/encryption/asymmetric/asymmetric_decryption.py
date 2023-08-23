@@ -2,16 +2,16 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import padding
 from cryptography.hazmat.primitives.asymmetric import rsa
 
-def TELAEncrypt(plaintext: str, public_key: rsa.RSAPublicKey) ->  str:
+def TELADecrypt(ciphertext: str, private_key: rsa.RSAPrivateKey) -> str:
         """
-        Encrypts the given text using a public key.
+        Decrypts the given ciphertext using a private key.
         """
-        ciphertext = public_key.encrypt(
-            plaintext.encode(),
+        plaintext = private_key.decrypt(
+            bytes.fromhex(ciphertext),
             padding.OAEP(
                 mgf=padding.MGF1(algorithm=hashes.SHA512()),
                 algorithm=hashes.SHA512(),
                 label=None
             )
         )
-        return ciphertext.hex()
+        return plaintext.decode()

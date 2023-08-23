@@ -30,7 +30,7 @@ class TELSymmetric():
         else:
             self.key_length = key_length
 
-    def encrypt(self, plaintext: str, password: str):
+    def encrypt(self, plaintext: str, password: str) -> str:
         '''
         Encrypt the given text using a password to generate a key
 
@@ -50,16 +50,16 @@ class TELSymmetric():
             print(f"There was an error when encryption the text!\n{msg}")
             return "ERROR"
         
-    def decrypt(self, ciphertext: str, password: str):
+    def decrypt(self, ciphertext: str, password: str) -> str:
         '''
         Encrypt the given text using a password to generate a key
 
         Arguments:
-         - Plaintext is the text that is being encrypted
+         - Ciphertext is the text that has been encrypted
          - Password is the text that the encrpytion key is generated from
 
         Return:
-         - Returns the encrypted text if no error occured
+         - Returns the decrypted text if no error occured and the password is correct
 
         Exeptions:
          - (InvalidTag) This error is raised when the password is wrong or the ciphertext has been tampered with
