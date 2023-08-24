@@ -2,7 +2,7 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import padding
 from cryptography.hazmat.primitives.asymmetric import rsa
 
-def TELADecrypt(ciphertext: str, private_key: rsa.RSAPrivateKey) -> str:
+def MA_Decrypt(ciphertext: str, private_key: rsa.RSAPrivateKey) -> str:
         """
         Decrypts the given ciphertext using a private key.
         """

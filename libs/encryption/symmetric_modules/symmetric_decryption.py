@@ -1,11 +1,10 @@
 import base64
-from cryptography.exceptions import InvalidTag
 from cryptography.fernet import Cipher, algorithms, modes
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from cryptography.hazmat.backends import default_backend
 
-def TELSDecrypt(iteration: int, ciphertext: str, password: str, salt_length: int = 32, key_length: int = 32):
+def MS_Decrypt(iteration: int, ciphertext: str, password: str, salt_length: int = 32, key_length: int = 32):
     """Decrypts a string using a password and salt."""
 
     password = password.encode()

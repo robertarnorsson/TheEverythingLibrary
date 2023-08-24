@@ -1,6 +1,6 @@
 # Symmetrical encryption and decryption example
 
-from libs.encryption.symmetric.symmetric import TELSymmetric
+from libs.encryption.symmetric import TELSymmetric
 
 TELS = TELSymmetric(iterations=100000, salt_length=128, key_length=128)
 
@@ -17,7 +17,7 @@ print('-------------------------------------------------------------------------
 
 # Asymmetrical encryption and decryption example
 
-from libs.encryption.asymmetric.asymmetric import TELAsymmetric
+from libs.encryption.asymmetric import TELAsymmetric
 
 TELA = TELAsymmetric()
 

@@ -1,10 +1,10 @@
-from libs.encryption.asymmetric.asymmetric_encryption import TELAEncrypt
-from libs.encryption.asymmetric.asymmetric_decryption import TELADecrypt
-from libs.encryption.asymmetric.asymmetric_key import TELAGenerateKeys
-from libs.encryption.asymmetric.asymmetric_key_storage import TELAStorePrivateKey
-from libs.encryption.asymmetric.asymmetric_key_storage import TELAStorePublicKey
-from libs.encryption.asymmetric.asymmetric_key_storage import TELAGetPrivateKey
-from libs.encryption.asymmetric.asymmetric_key_storage import TELAGetPublicKey
+from libs.encryption.asymmetric_modules.asymmetric_encryption import MA_Encrypt
+from libs.encryption.asymmetric_modules.asymmetric_decryption import MA_Decrypt
+from libs.encryption.asymmetric_modules.asymmetric_key import MA_GenerateKeys
+from libs.encryption.asymmetric_modules.asymmetric_key import MA_StorePrivateKey
+from libs.encryption.asymmetric_modules.asymmetric_key import MA_StorePublicKey
+from libs.encryption.asymmetric_modules.asymmetric_key import MA_GetPrivateKey
+from libs.encryption.asymmetric_modules.asymmetric_key import MA_GetPublicKey
 
 from cryptography.hazmat.primitives.asymmetric import rsa
 
@@ -33,7 +33,7 @@ class TELAsymmetric():
          - (ERROR) The standard error that is raised when something goes wrong
         '''
         try:
-            return TELAGenerateKeys()
+            return MA_GenerateKeys()
         except Exception as msg:
             print(f"There was an error when generating the keys!\n{msg}")
             return "ERROR"
@@ -53,7 +53,7 @@ class TELAsymmetric():
          - (ERROR) The standard error that is raised when something goes wrong
         '''
         try:
-            return TELAEncrypt(plaintext=plaintext, public_key=public_key)
+            return MA_Encrypt(plaintext=plaintext, public_key=public_key)
         except Exception as msg:
             print(f"There was an error when encryption the text!\n{msg}")
             return "ERROR"
@@ -74,7 +74,7 @@ class TELAsymmetric():
          - (ERROR) The standard error that is raised when something goes wrong
         '''
         try:
-            return TELADecrypt(ciphertext=ciphertext, private_key=private_key)
+            return MA_Decrypt(ciphertext=ciphertext, private_key=private_key)
         except ValueError as msg:
             print(f"The ciphertext or key is wrong or not matching\n{msg}")
             return "ValueError"
@@ -103,7 +103,7 @@ class TELAsymmetric():
          - (ERROR) The standard error that is raised when something goes wrong
         '''
         try:
-            TELAStorePrivateKey(private_key=private_key, password=password, path=path, file_name=file_name)
+            MA_StorePrivateKey(private_key=private_key, password=password, path=path, file_name=file_name)
         except FileNotFoundError as msg:
             print(f"The file that you want to access was not found or something went wrong when trying to create a new file\n{msg}")
         except Exception as msg:
@@ -126,7 +126,7 @@ class TELAsymmetric():
          - (ERROR) The standard error that is raised when something goes wrong
         '''
         try:
-            TELAStorePublicKey(public_key=public_key, path=path, file_name=file_name)
+            MA_StorePublicKey(public_key=public_key, path=path, file_name=file_name)
         except FileNotFoundError as msg:
             print(f"The file that you want to access was not found or something went wrong when trying to create a new file\n{msg}")
         except Exception as msg:
@@ -150,7 +150,7 @@ class TELAsymmetric():
          - (ERROR) The standard error that is raised when something goes wrong
         '''
         try:
-            key = TELAGetPrivateKey(password=password, path=path, file_name=file_name)
+            key = MA_GetPrivateKey(password=password, path=path, file_name=file_name)
             if key:
                 return key
             else:
@@ -179,7 +179,7 @@ class TELAsymmetric():
          - (ERROR) The standard error that is raised when something goes wrong
         '''
         try:
-            key = TELAGetPublicKey(path=path, file_name=file_name)
+            key = MA_GetPublicKey(path=path, file_name=file_name)
             if key:
                 return key
             else:

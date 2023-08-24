@@ -1,5 +1,5 @@
-from libs.encryption.symmetric.symmetric_encryption import TELSEncrypt
-from libs.encryption.symmetric.symmetric_decryption import TELSDecrypt
+from libs.encryption.symmetric_modules.symmetric_encryption import MS_Encrypt
+from libs.encryption.symmetric_modules.symmetric_decryption import MS_Decrypt
 
 from cryptography.exceptions import InvalidTag
 
@@ -45,7 +45,7 @@ class TELSymmetric():
          - (ERROR) The standard error that is raised when something goes wrong
         '''
         try:
-            return TELSEncrypt(iteration=self.iterations, plaintext=plaintext, password=password, salt_length=self.salt_length)
+            return MS_Encrypt(iteration=self.iterations, plaintext=plaintext, password=password, salt_length=self.salt_length)
         except Exception as msg:
             print(f"There was an error when encryption the text!\n{msg}")
             return "ERROR"
@@ -66,7 +66,7 @@ class TELSymmetric():
          - (ERROR) The standard error that is raised when something goes wrong
         '''
         try:
-            return TELSDecrypt(iteration=self.iterations, ciphertext=ciphertext, password=password, salt_length=self.salt_length)
+            return MS_Decrypt(iteration=self.iterations, ciphertext=ciphertext, password=password, salt_length=self.salt_length)
         except InvalidTag:
             print("The password was wrong or the cipertext has been tampered with")
             return "InvalidTag"

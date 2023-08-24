@@ -2,7 +2,7 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import padding
 from cryptography.hazmat.primitives.asymmetric import rsa
 
-def TELAEncrypt(plaintext: str, public_key: rsa.RSAPublicKey) ->  str:
+def MA_Encrypt(plaintext: str, public_key: rsa.RSAPublicKey) ->  str:
         """
         Encrypts the given text using a public key.
         """

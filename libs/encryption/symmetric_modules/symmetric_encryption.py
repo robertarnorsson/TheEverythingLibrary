@@ -6,7 +6,7 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from cryptography.hazmat.backends import default_backend
 
-def TELSEncrypt(iteration: int, plaintext: str, password: str, salt_length: int = 32, key_length: int = 32):
+def MS_Encrypt(iteration: int, plaintext: str, password: str, salt_length: int = 32, key_length: int = 32):
     """Encrypts a string using a password"""
 
     plaintext = plaintext.encode()

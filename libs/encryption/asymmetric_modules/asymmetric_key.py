@@ -4,8 +4,24 @@ from cryptography.hazmat.primitives import serialization
 
 import os
 import base64
+from typing import Tuple
 
-def TELAStorePrivateKey(private_key: rsa.RSAPrivateKey, password: str, path: str, file_name: str) -> None:
+def MA_GenerateKeys() -> Tuple[rsa.RSAPrivateKey, rsa.RSAPublicKey]:
+    """
+    Generates a private and a public key for the user and returns a tuple.
+
+    Return: (PrivateKey, PublicKey)
+    """
+
+    private_key = rsa.generate_private_key(
+        public_exponent=65537,
+        key_size=2048,
+        backend=default_backend()
+    )
+    public_key = private_key.public_key()
+    return (private_key, public_key)
+
+def MA_StorePrivateKey(private_key: rsa.RSAPrivateKey, password: str, path: str, file_name: str) -> None:
     """
     Stores the private key for the user at a specefied path.
     The key is stored encrypted using a password provided by the user and base64 encoded.
@@ -22,7 +38,7 @@ def TELAStorePrivateKey(private_key: rsa.RSAPrivateKey, password: str, path: str
     with open(os.path.join(path, f'{file_name}.pem'), 'wb') as f:
         f.write(b64_pem)
 
-def TELAStorePublicKey(public_key: rsa.RSAPublicKey, path: str, file_name: str) -> None:
+def MA_StorePublicKey(public_key: rsa.RSAPublicKey, path: str, file_name: str) -> None:
     """
     Stores the public key for the user at a specefied path.
     The key is stored base64 encoded.
@@ -38,7 +54,7 @@ def TELAStorePublicKey(public_key: rsa.RSAPublicKey, path: str, file_name: str) 
     with open(os.path.join(path, f'{file_name}.pem'), 'wb') as f:
         f.write(b64_pem)
 
-def TELAGetPrivateKey(password: str, path: str, file_name: str) -> rsa.RSAPrivateKey:
+def MA_GetPrivateKey(password: str, path: str, file_name: str) -> rsa.RSAPrivateKey:
     """
     Gets the private key and loads it using the provided password and then returns it.
 
@@ -53,7 +69,7 @@ def TELAGetPrivateKey(password: str, path: str, file_name: str) -> rsa.RSAPrivat
         )
         return private_key
 
-def TELAGetPublicKey(path: str, file_name: str) -> rsa.RSAPublicKey:
+def MA_GetPublicKey(path: str, file_name: str) -> rsa.RSAPublicKey:
     """
     Gets the public key and loads it and then returns it.
 
