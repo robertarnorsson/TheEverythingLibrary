@@ -5,4 +5,11 @@
 
 *THIS LIBRARY IS NOT ON PIP YET*
 
+## Description 
 This Python Library will have a LOT of different heler functions and classes that you can use for your own projects.
+
+# Installation
+```bash
+This is not implemented yet
+```
+
