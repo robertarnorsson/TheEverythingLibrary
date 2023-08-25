@@ -1,10 +1,10 @@
-from libs.encryption.asymmetric_modules.asymmetric_encryption import MA_Encrypt
-from libs.encryption.asymmetric_modules.asymmetric_decryption import MA_Decrypt
-from libs.encryption.asymmetric_modules.asymmetric_key import MA_GenerateKeys
-from libs.encryption.asymmetric_modules.asymmetric_key import MA_StorePrivateKey
-from libs.encryption.asymmetric_modules.asymmetric_key import MA_StorePublicKey
-from libs.encryption.asymmetric_modules.asymmetric_key import MA_GetPrivateKey
-from libs.encryption.asymmetric_modules.asymmetric_key import MA_GetPublicKey
+from everything.encryption.asymmetric_modules.asymmetric_encryption import MA_Encrypt
+from everything.encryption.asymmetric_modules.asymmetric_decryption import MA_Decrypt
+from everything.encryption.asymmetric_modules.asymmetric_key import MA_GenerateKeys
+from everything.encryption.asymmetric_modules.asymmetric_key import MA_StorePrivateKey
+from everything.encryption.asymmetric_modules.asymmetric_key import MA_StorePublicKey
+from everything.encryption.asymmetric_modules.asymmetric_key import MA_GetPrivateKey
+from everything.encryption.asymmetric_modules.asymmetric_key import MA_GetPublicKey
 
 from cryptography.hazmat.primitives.asymmetric import rsa
 
@@ -71,6 +71,7 @@ class TELAsymmetric():
 
         Exeptions:
          - (ValueError) The given private key is wrong or the ciphertext has been tamperd with
+         - (TypeError) The given private key is wrong or the ciphertext has been tamperd with
          - (ERROR) The standard error that is raised when something goes wrong
         '''
         try:

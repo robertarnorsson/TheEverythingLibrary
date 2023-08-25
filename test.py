@@ -1,6 +1,8 @@
+print('--------------------------------------------------------------------------')
+
 # Symmetrical encryption and decryption example
 
-from libs.encryption.symmetric import TELSymmetric
+from everything.encryption.symmetric import TELSymmetric
 
 TELS = TELSymmetric(iterations=100000, salt_length=128, key_length=128)
 
@@ -17,7 +19,7 @@ print('-------------------------------------------------------------------------
 
 # Asymmetrical encryption and decryption example
 
-from libs.encryption.asymmetric import TELAsymmetric
+from everything.encryption.asymmetric import TELAsymmetric
 
 TELA = TELAsymmetric()
 
@@ -37,3 +39,54 @@ print(ciphertext)
 
 decrpytedplaintext = TELA.decrypt(ciphertext=ciphertext, private_key=private_key)
 print(decrpytedplaintext)
+
+print('--------------------------------------------------------------------------')
+
+# Base64 encoding and decoding example
+
+from everything.encoding.standard import TELSEncoding
+
+TELS = TELSEncoding()
+
+plaintext = "Hello World"
+print(plaintext)
+
+encoded_text = TELS.base64_encode(plaintext=plaintext, encoding='utf-8')
+print(encoded_text)
+
+decodedtext = TELS.base64_decode(plaintext=encoded_text, encoding='utf-8')
+print(decodedtext)
+
+print('--------------------------------------------------------------------------')
+
+# Hex encoding and decoding example
+
+from everything.encoding.standard import TELSEncoding
+
+TELS = TELSEncoding()
+
+plaintext = "Hello World"
+print(plaintext)
+
+encoded_text = TELS.hex_encode(plaintext=plaintext, encoding='utf-8')
+print(encoded_text)
+
+decodedtext = TELS.hex_decode(encoded_text=encoded_text, encoding='utf-8')
+print(decodedtext)
+
+print('--------------------------------------------------------------------------')
+
+# Binary encoding and decoding example
+
+from everything.encoding.standard import TELSEncoding
+
+TELS = TELSEncoding()
+
+plaintext = "Hello World"
+print(plaintext)
+
+encoded_text = TELS.binary_encode(plaintext=plaintext, as_bytes=False)
+print(encoded_text)
+
+decodedtext = TELS.binary_decode(encoded_text=encoded_text)
+print(decodedtext)

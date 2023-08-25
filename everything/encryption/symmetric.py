@@ -1,5 +1,5 @@
-from libs.encryption.symmetric_modules.symmetric_encryption import MS_Encrypt
-from libs.encryption.symmetric_modules.symmetric_decryption import MS_Decrypt
+from everything.encryption.symmetric_modules.symmetric_encryption import MS_Encrypt
+from everything.encryption.symmetric_modules.symmetric_decryption import MS_Decrypt
 
 from cryptography.exceptions import InvalidTag
 

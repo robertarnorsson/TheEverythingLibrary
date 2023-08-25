@@ -1,13 +1,15 @@
 # To-Do List
+✘ = Not done | - = In progress | ✓ = Done
 
 ## Tasks
 
 - [ ✘ ] Make file managment
-- [ ✘ ] Make encoding in different formats
+- [ ✘ ] Make file encryption
+- [ ✘ ] Write descriptions for functions
 
 ## In Progress
 
-
+- [ - ] Make encoding in different formats
 
 ## Completed
 
