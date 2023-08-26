@@ -1,12 +1,12 @@
-from everything.encryption.asymmetric_modules.asymmetric_encryption import MA_Encrypt
-from everything.encryption.asymmetric_modules.asymmetric_decryption import MA_Decrypt
-from everything.encryption.asymmetric_modules.asymmetric_key import MA_GenerateKeys
-from everything.encryption.asymmetric_modules.asymmetric_key import MA_StorePrivateKey
-from everything.encryption.asymmetric_modules.asymmetric_key import MA_StorePublicKey
-from everything.encryption.asymmetric_modules.asymmetric_key import MA_GetPrivateKey
-from everything.encryption.asymmetric_modules.asymmetric_key import MA_GetPublicKey
-
+from cryptography.hazmat.backends import default_backend
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.asymmetric import padding
 from cryptography.hazmat.primitives.asymmetric import rsa
+from cryptography.hazmat.primitives import serialization
+
+import os
+import base64
+from typing import Tuple
 
 class TELAsymmetric():
     '''
@@ -19,7 +19,7 @@ class TELAsymmetric():
     def __init__(self) -> None:
         pass
 
-    def generate_key_pair(self):
+    def generate_key_pair(self) -> Tuple[rsa.RSAPrivateKey, rsa.RSAPublicKey]:
         '''
         Generates a key pair, one public key used for encrypting and a private key used for decryption
 
@@ -33,7 +33,13 @@ class TELAsymmetric():
          - (ERROR) The standard error that is raised when something goes wrong
         '''
         try:
-            return MA_GenerateKeys()
+            private_key = rsa.generate_private_key(
+                public_exponent=65537,
+                key_size=2048,
+                backend=default_backend()
+            )
+            public_key = private_key.public_key()
+            return (private_key, public_key)
         except Exception as msg:
             print(f"There was an error when generating the keys!\n{msg}")
             return "ERROR"
@@ -53,7 +59,15 @@ class TELAsymmetric():
          - (ERROR) The standard error that is raised when something goes wrong
         '''
         try:
-            return MA_Encrypt(plaintext=plaintext, public_key=public_key)
+            ciphertext = public_key.encrypt(
+                plaintext.encode(),
+                padding.OAEP(
+                    mgf=padding.MGF1(algorithm=hashes.SHA512()),
+                    algorithm=hashes.SHA512(),
+                    label=None
+                )
+            )
+            return ciphertext.hex()
         except Exception as msg:
             print(f"There was an error when encryption the text!\n{msg}")
             return "ERROR"
@@ -75,7 +89,15 @@ class TELAsymmetric():
          - (ERROR) The standard error that is raised when something goes wrong
         '''
         try:
-            return MA_Decrypt(ciphertext=ciphertext, private_key=private_key)
+            plaintext = private_key.decrypt(
+                bytes.fromhex(ciphertext),
+                padding.OAEP(
+                    mgf=padding.MGF1(algorithm=hashes.SHA512()),
+                    algorithm=hashes.SHA512(),
+                    label=None
+                )
+            )
+            return plaintext.decode()
         except ValueError as msg:
             print(f"The ciphertext or key is wrong or not matching\n{msg}")
             return "ValueError"
@@ -104,7 +126,14 @@ class TELAsymmetric():
          - (ERROR) The standard error that is raised when something goes wrong
         '''
         try:
-            MA_StorePrivateKey(private_key=private_key, password=password, path=path, file_name=file_name)
+            pem = private_key.private_bytes(
+                encoding=serialization.Encoding.PEM,
+                format=serialization.PrivateFormat.PKCS8,
+                encryption_algorithm=serialization.BestAvailableEncryption(password=password.encode())
+            )
+            b64_pem = base64.a85encode(pem, foldspaces=False, wrapcol=64, pad=True)
+            with open(os.path.join(path, f'{file_name}.pem'), 'wb') as f:
+                f.write(b64_pem)
         except FileNotFoundError as msg:
             print(f"The file that you want to access was not found or something went wrong when trying to create a new file\n{msg}")
         except Exception as msg:
@@ -127,7 +156,13 @@ class TELAsymmetric():
          - (ERROR) The standard error that is raised when something goes wrong
         '''
         try:
-            MA_StorePublicKey(public_key=public_key, path=path, file_name=file_name)
+            pem = public_key.public_bytes(
+                    encoding=serialization.Encoding.PEM,
+                    format=serialization.PublicFormat.SubjectPublicKeyInfo
+                )
+            b64_pem = base64.a85encode(pem, foldspaces=False, wrapcol=64, pad=True)
+            with open(os.path.join(path, f'{file_name}.pem'), 'wb') as f:
+                f.write(b64_pem)
         except FileNotFoundError as msg:
             print(f"The file that you want to access was not found or something went wrong when trying to create a new file\n{msg}")
         except Exception as msg:
@@ -151,9 +186,15 @@ class TELAsymmetric():
          - (ERROR) The standard error that is raised when something goes wrong
         '''
         try:
-            key = MA_GetPrivateKey(password=password, path=path, file_name=file_name)
-            if key:
-                return key
+            with open(os.path.join(path, f'{file_name}.pem'), "rb") as f:
+                key = base64.a85decode(f.read())
+                private_key = serialization.load_pem_private_key(
+                    key,
+                    password=password.encode(),
+                    backend=default_backend()
+                )
+            if private_key:
+                return private_key
             else:
                 raise Exception
         except FileNotFoundError as msg:
@@ -180,9 +221,14 @@ class TELAsymmetric():
          - (ERROR) The standard error that is raised when something goes wrong
         '''
         try:
-            key = MA_GetPublicKey(path=path, file_name=file_name)
-            if key:
-                return key
+            with open(os.path.join(path, f'{file_name}.pem'), "rb") as f:
+                key = base64.a85decode(f.read())
+                public_key = serialization.load_pem_public_key(
+                    key,
+                    backend=default_backend()
+                )
+            if public_key:
+                return public_key
             else:
                 raise Exception
         except FileNotFoundError as msg:

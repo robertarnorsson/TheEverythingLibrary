@@ -1,17 +1,15 @@
 # The Everything Library
 
-![Version](https://img.shields.io/badge/version-0.1.0-blue)
-![Python](https://img.shields.io/badge/python-3.6%2B-green)
-
-*THIS LIBRARY IS NOT ON PIP YET*
+![Version](https://img.shields.io/badge/version-0.0.7-blue)
+![Python](https://img.shields.io/badge/python-3.9%2B-green)
 
 ## Description 
-This Python Library will have a LOT of different heler functions and classes that you can use for your own projects.
+This Python Library will have a LOT of different helper functions and classes that you can use for your own projects.
 
 # Installation
 How to install the library 
 ```bash
-This is not implemented yet
+pip install theeverythinglibrary
 ```
 
 # Features
@@ -19,6 +17,21 @@ This is not implemented yet
 ### Encryption
 - Symmetric encryption
 - Asymmetric encryption
-- Full key management 
+- Full key management
 
+### Encoding
+- Base64 encoding and decoding
+- Hex encoding and decoding
+- Binary encoding and decoding
 
+# History
+
+0.0.1 (2023-08-26)
+------------------
+
+* Public on PyPi (pip install the-everything-library)
+
+0.0.2 - 0.0.7 (2023-08-26)
+------------------
+
+* Fixing import
