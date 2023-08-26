@@ -1,6 +1,6 @@
 import base64
 
-class TELSEncoding():
+class TELEncoding():
     '''
     WIP! Coming soon
     '''

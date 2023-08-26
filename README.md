@@ -1,6 +1,6 @@
 # The Everything Library
 
-![Version](https://img.shields.io/badge/version-0.0.7-blue)
+![Version](https://img.shields.io/badge/version-0.1.0-blue)
 ![Python](https://img.shields.io/badge/python-3.9%2B-green)
 
 ## Description 
@@ -35,3 +35,10 @@ pip install theeverythinglibrary
 ------------------
 
 * Fixing import
+
+0.1.0 (2023-08-26)
+------------------
+
+* Fixed import
+* Added math functions
+* Added sorting algorithms
