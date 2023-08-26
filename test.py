@@ -2,7 +2,7 @@ print('-------------------------------------------------------------------------
 
 # Symmetrical encryption and decryption example
 
-from everything.encryption.symmetric import TELSymmetric
+from src.everything.encryption.symmetric import TELSymmetric
 
 TELS = TELSymmetric(iterations=100000, salt_length=128, key_length=128)
 
@@ -19,7 +19,7 @@ print('-------------------------------------------------------------------------
 
 # Asymmetrical encryption and decryption example
 
-from everything.encryption.asymmetric import TELAsymmetric
+from src.everything.encryption.asymmetric import TELAsymmetric
 
 TELA = TELAsymmetric()
 
@@ -44,7 +44,7 @@ print('-------------------------------------------------------------------------
 
 # Base64 encoding and decoding example
 
-from everything.encoding.standard import TELSEncoding
+from src.everything.encoding.standard import TELSEncoding
 
 TELS = TELSEncoding()
 
@@ -61,7 +61,7 @@ print('-------------------------------------------------------------------------
 
 # Hex encoding and decoding example
 
-from everything.encoding.standard import TELSEncoding
+from src.everything.encoding.standard import TELSEncoding
 
 TELS = TELSEncoding()
 
@@ -78,7 +78,7 @@ print('-------------------------------------------------------------------------
 
 # Binary encoding and decoding example
 
-from everything.encoding.standard import TELSEncoding
+from src.everything.encoding.standard import TELSEncoding
 
 TELS = TELSEncoding()
 
