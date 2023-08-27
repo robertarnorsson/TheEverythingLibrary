@@ -22,7 +22,7 @@ class TELEncoding():
         except Exception as msg:
             raise Exception(f"There was an error when encoding the text: {msg}")
     
-    def base64_decode(self, plaintext: str, encoding: str) -> str:
+    def base64_decode(self, plaintext: str, encoding: str = 'utf-8') -> str:
         '''
         WIP! Coming soon
         '''
@@ -65,7 +65,7 @@ class TELEncoding():
         except Exception as msg:
             raise Exception(f"There was an error when encoding the text: {msg}")
         
-    def binary_encode(self, plaintext: str, as_bytes: bool = False) -> str:
+    def binary_encode(self, plaintext: str, as_bytes: bool = False) -> str | bytes:
         '''
         WIP! Coming soon
         '''
