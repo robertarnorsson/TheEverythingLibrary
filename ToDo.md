@@ -18,7 +18,6 @@
 - [ ✘ ] Countdowns and timers
 - [ ✘ ] Probability distributions and random number generation
 - [ ✘ ] Currency conversion and financial calculations
-- [ ✘ ] Sorting and searching algorithms
 - [ ✘ ] Graph algorithms and traversal
 - [ ✘ ] HTTP request/response handling
 - [ ✘ ] URL parsing and manipulation
@@ -43,6 +42,7 @@
 
 - [ ✓ ] Make file management
 - [ ✓ ] Math functions
+- [ ✓ ] Sorting and searching algorithms
 - [ ✓ ] Encoding in different formats
 - [ ✓ ] Symmetrical Encryption
 - [ ✓ ] Asymmetrical Encryption

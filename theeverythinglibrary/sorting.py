@@ -93,3 +93,37 @@ class TELSorting():
         while not arr == sorted(arr):
             random.shuffle(arr)
         return arr
+
+class TELSearching():
+    '''
+    WIP! Coming soon
+    '''
+    def __init__(self) -> None:
+        pass
+
+    def linear_search(self, arr: list[int | float], target: int | float):
+        for i in range(len(arr)):
+            if arr[i] == target:
+                return i
+        return -1
+
+    def binary_search(self, arr: list[int | float], target: int | float):
+        low, high = 0, len(arr) - 1
+        while low <= high:
+            mid = (low + high) // 2
+            if arr[mid] == target:
+                return mid
+            elif arr[mid] < target:
+                low = mid + 1
+            else:
+                high = mid - 1
+        return -1
+    
+    def search(lst: list, target, comparison_func=None):
+        if comparison_func is None:
+            comparison_func = lambda x, y: x == y
+
+        for index, item in enumerate(lst):
+            if comparison_func(item, target):
+                return index
+        return -1

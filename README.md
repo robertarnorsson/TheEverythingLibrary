@@ -128,4 +128,9 @@ print(decoded_text)
 
 * Fix with base64 decode args
 
+0.2.4 (2023-08-27)
+------------------
+
+* Added searching algorithms
+
 
