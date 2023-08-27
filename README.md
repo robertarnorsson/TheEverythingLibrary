@@ -123,3 +123,9 @@ print(decoded_text)
 
 * Updated README
 
+0.2.3 (2023-08-27)
+------------------
+
+* Fix with base64 decode args
+
+
