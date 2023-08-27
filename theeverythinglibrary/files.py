@@ -2,39 +2,36 @@ import os
 import shutil
 
 class TELFileManager:
-    def create_directory(self, base_dir: str, dir_name: str) -> str:
-        dir_path = os.path.join(base_dir, dir_name)
+    def create_directory(self, dir: str) -> str:
         try:
-            os.makedirs(dir_path, exist_ok=True)
-            return dir_path
+            os.makedirs(dir, exist_ok=True)
+            return dir
         except OSError as msg:
             raise OSError(f"Error creating directory: {msg}")
         except Exception as msg:
             raise Exception(f"Error deleting directory: {msg}")
 
-    def delete_directory(self, base_dir: str, dir_name: str) -> bool:
-        dir_path = os.path.join(base_dir, dir_name)
+    def delete_directory(self, dir: str) -> bool:
         try:
-            if os.path.exists(dir_path) and os.path.isdir(dir_path):
-                shutil.rmtree(dir_path)
+            if os.path.exists(dir) and os.path.isdir(dir):
+                shutil.rmtree(dir)
                 return True
             return False
         except Exception as msg:
             raise Exception(f"Error deleting directory: {msg}")
 
-    def list_files(self, base_dir: str, dir_name: str) -> list[str]:
-        dir_path = os.path.join(base_dir, dir_name)
+    def list_files(self, dir: str) -> list[str]:
         try:
-            if os.path.exists(dir_path) and os.path.isdir(dir_path):
-                files = [f for f in os.listdir(dir_path) if os.path.isfile(os.path.join(dir_path, f))]
+            if os.path.exists(dir) and os.path.isdir(dir):
+                files = [f for f in os.listdir(dir) if os.path.isfile(os.path.join(dir, f))]
                 return files
             return []
         except Exception as msg:
             raise Exception(f"Error listing files: {msg}")
 
-    def copy_file(self, base_dir: str, src_dir: str, src_file: str, dest_dir: str) -> bool:
-        src_path = os.path.join(base_dir, src_dir, src_file)
-        dest_path = os.path.join(base_dir, dest_dir, src_file)
+    def copy_file(self, src_dir: str, src_file: str, dest_dir: str) -> bool:
+        src_path = os.path.join(src_dir, src_file)
+        dest_path = os.path.join(dest_dir, src_file)
         try:
             if os.path.exists(src_path) and os.path.isfile(src_path):
                 shutil.copy(src_path, dest_path)
@@ -43,9 +40,9 @@ class TELFileManager:
         except Exception as msg:
             raise Exception(f"Error copying file: {msg}")
 
-    def move_file(self, base_dir: str, src_dir: str, src_file: str, dest_dir: str) -> bool:
-        src_path = os.path.join(base_dir, src_dir, src_file)
-        dest_path = os.path.join(base_dir, dest_dir, src_file)
+    def move_file(self, src_dir: str, src_file: str, dest_dir: str) -> bool:
+        src_path = os.path.join(src_dir, src_file)
+        dest_path = os.path.join(dest_dir, src_file)
         try:
             if os.path.exists(src_path) and os.path.isfile(src_path):
                 shutil.move(src_path, dest_path)
