@@ -6,9 +6,15 @@ class TELMath():
         pass
 
     def add(self, x: int | float | str, y: int | float | str) -> float:
+        '''
+        WIP! Coming soon
+        '''
         return float(x + y)
 
     def add_list(self, arr: list[int | float | str]) -> float:
+        '''
+        WIP! Coming soon
+        '''
         result = 0.0
         clean_numbers = []
         for num in arr:
@@ -29,9 +35,15 @@ class TELMath():
             return float(result)
     
     def subtract(self, x: int | float | str, y: int | float | str) -> float:
+        '''
+        WIP! Coming soon
+        '''
         return float(x - y)
 
     def subtract_list(self, arr_x: list[int | float | str], arr_y: list[int | float | str]) -> float:
+        '''
+        WIP! Coming soon
+        '''
         x = self.add_list(arr=arr_x)
         y = self.add_list(arr=arr_y)
 
@@ -43,6 +55,9 @@ class TELMath():
             print(f"An error occured!\n{msg}")
     
     def average(self, arr: list[int | float | str]) -> float:
+        '''
+        WIP! Coming soon
+        '''
         length = len(arr)
         _sum = self.add_list(arr=arr)
 
@@ -52,3 +67,19 @@ class TELMath():
             print(f"{_sum} is not able to be averaged!\n{msg}")
         except Exception as msg:
             print(f"An error occured!\n{msg}")
+    
+    def median(self, arr: list[int | float | str]) -> float:
+        '''
+        WIP! Coming soon
+        '''
+        sorted_numbers = sorted(arr)
+        length = len(sorted_numbers)
+        
+        if length % 2 == 1:
+            median = sorted_numbers[length // 2]
+        else:
+            middle1 = sorted_numbers[length // 2 - 1]
+            middle2 = sorted_numbers[length // 2]
+            median = (middle1 + middle2) / 2
+        
+        return median

@@ -16,14 +16,11 @@ class TELEncoding():
             encoded_string = encoded_bytes.decode(encoding=encoding)
             return encoded_string
         except UnicodeEncodeError as msg:
-            print(f"There was an error when encoding the text!\n{msg}")
-            return "UnicodeEncodeError"
+            raise UnicodeEncodeError(f"There was an error when encoding the text: {msg}")
         except UnicodeDecodeError as msg:
-            print(f"There was an error when decoding the text!\n{msg}")
-            return "UnicodeDecodeError"
+            raise UnicodeDecodeError(f"There was an error when decoding the text: {msg}")
         except Exception as msg:
-            print(f"There was an error when encoding the text!\n{msg}")
-            return "ERROR"
+            raise Exception(f"There was an error when encoding the text: {msg}")
     
     def base64_decode(self, plaintext: str, encoding: str) -> str:
         '''
@@ -34,14 +31,11 @@ class TELEncoding():
             decoded_string = decoded_bytes.decode(encoding=encoding)
             return decoded_string
         except UnicodeEncodeError as msg:
-            print(f"There was an error when encoding the text!\n{msg}")
-            return "UnicodeEncodeError"
+            raise UnicodeEncodeError(f"There was an error when encoding the text: {msg}")
         except UnicodeDecodeError as msg:
-            print(f"There was an error when decoding the text!\n{msg}")
-            return "UnicodeDecodeError"
+            raise UnicodeDecodeError(f"There was an error when decoding the text: {msg}")
         except Exception as msg:
-            print(f"There was an error when encoding the text!\n{msg}")
-            return "ERROR"
+            raise Exception(f"There was an error when encoding the text: {msg}")
 
     def hex_encode(self, plaintext: str, encoding: str = 'utf-8') -> str:
         '''
@@ -51,14 +45,11 @@ class TELEncoding():
             encoded_string = plaintext.encode(encoding=encoding).hex()
             return encoded_string
         except UnicodeEncodeError as msg:
-            print(f"There was an error when encoding the text!\n{msg}")
-            return "UnicodeEncodeError"
+            raise UnicodeEncodeError(f"There was an error when encoding the text: {msg}")
         except UnicodeDecodeError as msg:
-            print(f"There was an error when decoding the text!\n{msg}")
-            return "UnicodeDecodeError"
+            raise UnicodeDecodeError(f"There was an error when decoding the text: {msg}")
         except Exception as msg:
-            print(f"There was an error when encoding the text!\n{msg}")
-            return "ERROR"
+            raise Exception(f"There was an error when encoding the text: {msg}")
     
     def hex_decode(self, encoded_text: str, encoding: str = 'utf-8') -> str:
         '''
@@ -68,14 +59,11 @@ class TELEncoding():
             decoded_string = bytes.fromhex(encoded_text).decode(encoding=encoding)
             return decoded_string
         except UnicodeEncodeError as msg:
-            print(f"There was an error when encoding the text!\n{msg}")
-            return "UnicodeEncodeError"
+            raise UnicodeEncodeError(f"There was an error when encoding the text: {msg}")
         except UnicodeDecodeError as msg:
-            print(f"There was an error when decoding the text!\n{msg}")
-            return "UnicodeDecodeError"
+            raise UnicodeDecodeError(f"There was an error when decoding the text: {msg}")
         except Exception as msg:
-            print(f"There was an error when encoding the text!\n{msg}")
-            return "ERROR"
+            raise Exception(f"There was an error when encoding the text: {msg}")
         
     def binary_encode(self, plaintext: str, as_bytes: bool = False) -> str:
         '''
@@ -88,14 +76,11 @@ class TELEncoding():
                 encoded_bytes = ' '.join(format(ord(char), '08b') for char in plaintext)
             return encoded_bytes
         except UnicodeEncodeError as msg:
-            print(f"There was an error when encoding the text!\n{msg}")
-            return "UnicodeEncodeError"
+            raise UnicodeEncodeError(f"There was an error when encoding the text: {msg}")
         except UnicodeDecodeError as msg:
-            print(f"There was an error when decoding the text!\n{msg}")
-            return "UnicodeDecodeError"
+            raise UnicodeDecodeError(f"There was an error when decoding the text: {msg}")
         except Exception as msg:
-            print(f"There was an error when encoding the text!\n{msg}")
-            return "ERROR"
+            raise Exception(f"There was an error when encoding the text: {msg}")
     
     def binary_decode(self, encoded_text: str | bytes) -> str:
         '''
@@ -109,11 +94,8 @@ class TELEncoding():
                 decoded_string = ''.join(chr(byte) for byte in encoded_text)
             return decoded_string
         except UnicodeEncodeError as msg:
-            print(f"There was an error when encoding the text!\n{msg}")
-            return "UnicodeEncodeError"
+            raise UnicodeEncodeError(f"There was an error when encoding the text: {msg}")
         except UnicodeDecodeError as msg:
-            print(f"There was an error when decoding the text!\n{msg}")
-            return "UnicodeDecodeError"
+            raise UnicodeDecodeError(f"There was an error when decoding the text: {msg}")
         except Exception as msg:
-            print(f"There was an error when encoding the text!\n{msg}")
-            return "ERROR"
+            raise Exception(f"There was an error when encoding the text: {msg}")
