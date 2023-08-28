@@ -31,6 +31,7 @@ from theeverythinglibrary.files import TELFileManager
 from theeverythinglibrary.math import TELMath
 from theeverythinglibrary.sorting import TELSorting
 from theeverythinglibrary.regex import TELRegex
+from theeverythinglibrary.utilities import TELUtilities
 ```
 
 Then use it like this!
@@ -98,6 +99,14 @@ print(decoded_text)
 - Escape
 - Split
 
+### Utilities
+- Colored print
+- Project path
+- Project file path
+
+## Do you want to contribute?
+Please try and use the formatting rules from the [FORMATTING.md](https://github.com/RobertArnosson/TheEverythingLibrary/blob/main/FORMATTING.md) file
+
 ## Visit Github for more info
 [Visit the GitHub repository](https://github.com/RobertArnosson/TheEverythingLibrary) for the latest updates, documentation, and community discussions.
 
@@ -153,4 +162,10 @@ print(decoded_text)
 * Fixed some small issues
 * Added regular expressions (regex)
 
+0.2.6 (2023-08-28)
+------------------
+
+* Fixed some small issues
+* Added utilities
+* Added an example of "Project Formatting and Guidelines" file (FORMATTING.md)
 

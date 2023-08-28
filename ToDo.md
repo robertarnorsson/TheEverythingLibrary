@@ -3,7 +3,6 @@
 
 ## Tasks
 
-- [ ✘ ] Write descriptions for functions
 - [ ✘ ] Read and write data to various file formats (CSV, JSON, XML, etc.)
 - [ ✘ ] Recursive directory traversal and file manipulation
 - [ ✘ ] Easy logging and debugging support
@@ -34,7 +33,8 @@
 
 ## In Progress
 
-
+- [ - ] Write descriptions for functions
+- [ - ] Misc and Utilities class
 
 ## Completed
 *Comlete does not mean no more will be added*
