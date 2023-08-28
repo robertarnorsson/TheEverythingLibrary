@@ -5,7 +5,7 @@ with open('README.md') as readme_file:
 
 setup(
     name="theeverythinglibrary",
-    version="0.2.4",
+    version="0.2.5",
     description="Library with a module for almost everything",
     url="https://github.com/RobertArnosson/TheEverythingLibrary",
     author="Robert Arnorsson",

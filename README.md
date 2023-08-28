@@ -147,4 +147,10 @@ print(decoded_text)
 
 * Added searching algorithms
 
+0.2.5 (2023-08-28)
+------------------
+
+* Fixed some small issues
+* Added regular expressions (regex)
+
 

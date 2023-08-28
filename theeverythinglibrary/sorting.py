@@ -125,14 +125,14 @@ class TELSearching():
                 high = mid - 1
         return -1
     
-    def search(self, lst: list, target, comparison_func=None):
+    def search(self, arr: list, target, comparison_func=None):
         '''
         WIP! Coming soon
         '''
         if comparison_func is None:
             comparison_func = lambda x, y: x == y
 
-        for index, item in enumerate(lst):
+        for index, item in enumerate(arr):
             if comparison_func(item, target):
                 return index
         return -1

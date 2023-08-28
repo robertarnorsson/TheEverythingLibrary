@@ -1,6 +1,9 @@
 import re
 
 class TELRegex:
+    '''
+    WIP! Coming soon
+    '''
     def __init__(self, default_pattern):
         self.default_pattern = default_pattern
 
@@ -17,28 +20,46 @@ class TELRegex:
         }
     
     def pattern(self, name: str):
+        '''
+        WIP! Coming soon
+        '''
         try:
             return self.common_patterns[name.lower()]
         except KeyError:
             raise KeyError(f'The name "{name}" is not a valid name. Please choose a name from this list: email, url, date, phone, ip, color, word, text, number')
 
     def match(self, text, pattern=None):
+        '''
+        WIP! Coming soon
+        '''
         pattern_to_use = pattern if pattern is not None else self.default_pattern
         return re.match(pattern_to_use, text)
 
     def search(self, text, pattern=None):
+        '''
+        WIP! Coming soon
+        '''
         pattern_to_use = pattern if pattern is not None else self.default_pattern
         return re.search(pattern_to_use, text)
 
     def findall(self, text, pattern=None):
+        '''
+        WIP! Coming soon
+        '''
         pattern_to_use = pattern if pattern is not None else self.default_pattern
         return re.findall(pattern_to_use, text)
 
     def finditer(self, text, pattern=None):
+        '''
+        WIP! Coming soon
+        '''
         pattern_to_use = pattern if pattern is not None else self.default_pattern
         return re.finditer(pattern_to_use, text)
 
     def replace(self, text, replacement, pattern=None):
+        '''
+        WIP! Coming soon
+        '''
         pattern_to_use = pattern if pattern is not None else self.default_pattern
         return re.sub(pattern_to_use, replacement, text)
 
