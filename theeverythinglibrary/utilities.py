@@ -45,7 +45,13 @@ class TELUtilities:
         pass
 
     def project_path(self):
+        '''
+        WIP! Coming soon
+        '''
         return os.path.abspath(os.path.dirname(__file__))
 
     def project_file_path(self):
+        '''
+        WIP! Coming soon
+        '''
         return os.path.abspath(os.path.abspath(__file__))
