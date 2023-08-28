@@ -29,23 +29,21 @@ class TELFileManager:
         except Exception as msg:
             raise Exception(f"Error listing files: {msg}")
 
-    def copy_file(self, src_dir: str, src_file: str, dest_dir: str) -> bool:
-        src_path = os.path.join(src_dir, src_file)
+    def copy_file(self, src_file: str, dest_dir: str) -> bool:
         dest_path = os.path.join(dest_dir, src_file)
         try:
-            if os.path.exists(src_path) and os.path.isfile(src_path):
-                shutil.copy(src_path, dest_path)
+            if os.path.exists(src_file) and os.path.isfile(src_file):
+                shutil.copy(src_file, dest_path)
                 return True
             return False
         except Exception as msg:
             raise Exception(f"Error copying file: {msg}")
 
-    def move_file(self, src_dir: str, src_file: str, dest_dir: str) -> bool:
-        src_path = os.path.join(src_dir, src_file)
+    def move_file(self, src_file: str, dest_dir: str) -> bool:
         dest_path = os.path.join(dest_dir, src_file)
         try:
-            if os.path.exists(src_path) and os.path.isfile(src_path):
-                shutil.move(src_path, dest_path)
+            if os.path.exists(src_file) and os.path.isfile(src_file):
+                shutil.move(src_file, dest_path)
                 return True
             return False
         except Exception as msg:

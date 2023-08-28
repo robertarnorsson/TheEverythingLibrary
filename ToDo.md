@@ -8,7 +8,6 @@
 - [ ✘ ] Recursive directory traversal and file manipulation
 - [ ✘ ] Easy logging and debugging support
 - [ ✘ ] Advanced string formatting and templating
-- [ ✘ ] Regular expression utilities
 - [ ✘ ] String case conversion and manipulation (camel case, snake case, etc.)
 - [ ✘ ] Input validation functions for common data types (numbers, strings, dates, etc.)
 - [ ✘ ] Data cleaning and transformation tools
@@ -40,6 +39,7 @@
 ## Completed
 *Comlete does not mean no more will be added*
 
+- [ ✓ ] Regular expression utilities
 - [ ✓ ] Make file management
 - [ ✓ ] Math functions
 - [ ✓ ] Sorting and searching algorithms

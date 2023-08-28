@@ -30,6 +30,7 @@ from theeverythinglibrary.encryption import TELSymmetric, TELAsymmetric
 from theeverythinglibrary.files import TELFileManager
 from theeverythinglibrary.math import TELMath
 from theeverythinglibrary.sorting import TELSorting
+from theeverythinglibrary.regex import TELRegex
 ```
 
 Then use it like this!
@@ -83,6 +84,19 @@ print(decoded_text)
 - Quick sort
 - Merge sort
 - Bogo sort
+
+### Searching algorithms
+- Search
+- Linear search
+- Binary search
+
+### Regular expression
+- Match
+- Search
+- Find all
+- Replace
+- Escape
+- Split
 
 ## Visit Github for more info
 [Visit the GitHub repository](https://github.com/RobertArnosson/TheEverythingLibrary) for the latest updates, documentation, and community discussions.

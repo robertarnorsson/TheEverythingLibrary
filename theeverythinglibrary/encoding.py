@@ -22,12 +22,12 @@ class TELEncoding():
         except Exception as msg:
             raise Exception(f"There was an error when encoding the text: {msg}")
     
-    def base64_decode(self, plaintext: str, encoding: str = 'utf-8') -> str:
+    def base64_decode(self, encoded_text: str, encoding: str = 'utf-8') -> str:
         '''
         WIP! Coming soon
         '''
         try:
-            decoded_bytes = base64.b64decode(plaintext.encode(encoding=encoding))
+            decoded_bytes = base64.b64decode(encoded_text.encode(encoding=encoding))
             decoded_string = decoded_bytes.decode(encoding=encoding)
             return decoded_string
         except UnicodeEncodeError as msg:

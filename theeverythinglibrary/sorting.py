@@ -102,12 +102,18 @@ class TELSearching():
         pass
 
     def linear_search(self, arr: list[int | float], target: int | float):
+        '''
+        WIP! Coming soon
+        '''
         for i in range(len(arr)):
             if arr[i] == target:
                 return i
         return -1
 
     def binary_search(self, arr: list[int | float], target: int | float):
+        '''
+        WIP! Coming soon
+        '''
         low, high = 0, len(arr) - 1
         while low <= high:
             mid = (low + high) // 2
@@ -119,7 +125,10 @@ class TELSearching():
                 high = mid - 1
         return -1
     
-    def search(lst: list, target, comparison_func=None):
+    def search(self, lst: list, target, comparison_func=None):
+        '''
+        WIP! Coming soon
+        '''
         if comparison_func is None:
             comparison_func = lambda x, y: x == y
 
