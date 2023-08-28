@@ -49,14 +49,3 @@ class TELRegex:
     @staticmethod
     def split(text, pattern):
         return re.split(pattern, text)
-    
-default_pattern = r'\d+'
-regex_util = TELRegex(default_pattern)
-
-text = "There are 123 apples and 456 bananas."
-matches = regex_util.findall(text)
-print(matches)  # Output: ['123', '456']
-
-custom_pattern = r'[a-z]+'
-custom_matches = regex_util.search(text, pattern=regex_util.pattern('text'))
-print(custom_matches)
