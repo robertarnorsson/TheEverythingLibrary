@@ -169,3 +169,11 @@ Please try and use the formatting rules from the [FORMATTING.md](https://github.
 * Added utilities
 * Added an example of "Project Formatting and Guidelines" file (FORMATTING.md)
 
+0.2.7 (2023-08-29)
+------------------
+
+* Added more functions for the file manager
+    - Create file
+    - Delete file
+* Fixed cprint
+

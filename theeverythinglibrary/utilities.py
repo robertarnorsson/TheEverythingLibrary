@@ -1,10 +1,11 @@
 import os
+from theeverythinglibrary.expetions import InvalidColor
 
-def cprint(text: str, text_color=None, background_color=None):
+def cprint(text: str, color=None, bg_color=None):
     '''
-    WIP! Coming soon (Might not work as expected!)
+    WIP! Coming soon
     '''
-    COLORS_F = {
+    COLORS = {
         'black': '30',
         'red': '31',
         'green': '32',
@@ -14,23 +15,15 @@ def cprint(text: str, text_color=None, background_color=None):
         'cyan': '36',
         'white': '37',
     }
-
-    COLORS_B = {
-        'black': '40',
-        'red': '41',
-        'green': '42',
-        'yellow': '43',
-        'blue': '44',
-        'magenta': '45',
-        'cyan': '46',
-        'white': '47',
-    }
     
     RESET = '\033[0m'
+
+    if color != None and color not in COLORS:
+        raise InvalidColor(color=color)
     
     # Check if the specified colors are valid
-    background_code = COLORS_B.get(background_color, '')
-    text_code = COLORS_F.get(text_color, '')
+    background_code = str(int(COLORS.get(bg_color, '')) + 10) if bg_color != None else "0"
+    text_code = COLORS.get(color, '') if color != None else "0"
     
     colored_text = f'\033[{background_code};{text_code}m{text}{RESET}'
     
