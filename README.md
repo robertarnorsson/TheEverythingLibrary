@@ -1,15 +1,25 @@
-# The Everything Library
-*Unlock the Power of Python with The Everything Library - Your Go-To Library for Streamlined Development*
-
-[![PyPI - Version](https://img.shields.io/pypi/v/theeverythinglibrary?label=Version)](https://pypi.org/project/theeverythinglibrary/)
-[![Python](https://img.shields.io/badge/python-3.9%2B-green?logo=python&logoColor=white&label=Python)](https://github.com/RobertArnosson/TheEverythingLibrary)
-[![GitHub Repo stars](https://img.shields.io/github/stars/RobertArnosson/TheEverythingLibrary?logo=github&logoColor=white&label=Stars)](https://github.com/RobertArnosson/TheEverythingLibrary)
-[![PyPI - Downloads](https://img.shields.io/pypi/dm/theeverythinglibrary?logo=pypi&logoColor=white&label=Downloads)](https://pypi.org/project/theeverythinglibrary/)
-[![PyPI - Status](https://img.shields.io/pypi/status/theeverythinglibrary?label=Status)](https://pypi.org/project/theeverythinglibrary/)
-[![PyPI - License](https://img.shields.io/pypi/l/theeverythinglibrary?label=License)](https://github.com/RobertArnosson/TheEverythingLibrary/blob/main/LICENSE)
-
-## Description 
-This Python Library will have a LOT of different helper functions and classes that you can use for your own projects.
+<div style="padding: 40px"></div>
+<div align="center" style="position: relative; display: flex; align-items: center; justify-content: center; padding: 10px;">
+    <p align="center" style="padding: 15px"><a href="https://pypi.org/project/theeverythinglibrary/" target="_blank"><img src="https://github.com/RobertArnosson/TheEverythingLibraryAssets/blob/main/TELLogo-128xR.png?raw=true"></a></p>
+    <div>
+        <p align="center" style="font-size: 54px;">The Everything Library</p>
+        <p align="left" style="font-size: 12px; position: absolute; transform: translate(7px, -22.5px);">Unlock the Power of Python with The Everything Library</p>
+    </div>
+</div>
+<div align="center" style="display: flex; align-items: center; justify-content: center;">
+    <p align="center" style="padding: 5px"><a href="https://pypi.org/project/theeverythinglibrary/" target="_blank"><img src="https://img.shields.io/pypi/v/theeverythinglibrary?label=Version"></a></p>
+    <p align="center" style="padding: 5px"><a href="https://pypi.org/project/theeverythinglibrary/" target="_blank"><img src="https://img.shields.io/badge/python-3.9%2B-green?logo=python&logoColor=white&label=Python"></a></p>
+    <p align="center" style="padding: 5px"><a href="https://pypi.org/project/theeverythinglibrary/" target="_blank"><img src="https://img.shields.io/github/stars/RobertArnosson/TheEverythingLibrary?logo=github&logoColor=white&label=Stars"></a></p>
+    <p align="center" style="padding: 5px"><a href="https://pypi.org/project/theeverythinglibrary/" target="_blank"><img src="https://img.shields.io/pypi/dm/theeverythinglibrary?logo=pypi&logoColor=white&label=Downloads"></a></p>
+    <p align="center" style="padding: 5px"><a href="https://pypi.org/project/theeverythinglibrary/" target="_blank"><img src="https://img.shields.io/pypi/status/theeverythinglibrary?label=Status"></a></p>
+    <p align="center" style="padding: 5px"><a href="https://pypi.org/project/theeverythinglibrary/" target="_blank"><img src="https://img.shields.io/pypi/l/theeverythinglibrary?label=License"></a></p>
+</div>
+<div style="padding: 40px"></div>
+<div align="center">
+    <p align="center" style="font-size: 32px; padding: 5px;">Description</p>
+    <p align="center" style="font-size: 16px;">This Python Library will have a LOT of different helper functions and classes that you can use for your own projects.</p>
+</div>
+<div style="padding: 40px"></div>
 
 # Installation
 How to install the library 
@@ -177,3 +187,7 @@ Please try and use the formatting rules from the [FORMATTING.md](https://github.
     - Delete file
 * Fixed cprint
 
+0.2.8 (2023-08-29)
+------------------
+
+* Huge README change
