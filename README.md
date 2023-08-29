@@ -1,23 +1,23 @@
 <div style="padding: 40px"></div>
-<div align="center" style="position: relative; display: flex; align-items: center; justify-content: center; padding: 10px;">
-    <p align="center" style="padding: 15px"><a href="https://pypi.org/project/theeverythinglibrary/" target="_blank"><img src="https://github.com/RobertArnosson/TheEverythingLibraryAssets/blob/main/TELLogo-128xR.png?raw=true"></a></p>
+<div style="position: relative; display: flex; align-items: center; justify-content: center; padding: 10px;">
+    <p style="padding: 15px"><a href="https://pypi.org/project/theeverythinglibrary/" target="_blank"><img src="https://github.com/RobertArnosson/TheEverythingLibraryAssets/blob/main/TELLogo-128xR.png?raw=true"></a></p>
     <div>
-        <p align="center" style="font-size: 54px;">The Everything Library</p>
-        <p align="left" style="font-size: 12px; position: absolute; transform: translate(7px, -22.5px);">Unlock the Power of Python with The Everything Library</p>
+        <p style="font-size: 54px;">The Everything Library</p>
+        <p style="font-size: 12px; position: absolute; transform: translate(7px, -22.5px);">Unlock the Power of Python with The Everything Library</p>
     </div>
 </div>
-<div align="center" style="display: flex; align-items: center; justify-content: center;">
-    <p align="center" style="padding: 5px"><a href="https://pypi.org/project/theeverythinglibrary/" target="_blank"><img src="https://img.shields.io/pypi/v/theeverythinglibrary?label=Version"></a></p>
-    <p align="center" style="padding: 5px"><a href="https://pypi.org/project/theeverythinglibrary/" target="_blank"><img src="https://img.shields.io/badge/python-3.9%2B-green?logo=python&logoColor=white&label=Python"></a></p>
-    <p align="center" style="padding: 5px"><a href="https://pypi.org/project/theeverythinglibrary/" target="_blank"><img src="https://img.shields.io/github/stars/RobertArnosson/TheEverythingLibrary?logo=github&logoColor=white&label=Stars"></a></p>
-    <p align="center" style="padding: 5px"><a href="https://pypi.org/project/theeverythinglibrary/" target="_blank"><img src="https://img.shields.io/pypi/dm/theeverythinglibrary?logo=pypi&logoColor=white&label=Downloads"></a></p>
-    <p align="center" style="padding: 5px"><a href="https://pypi.org/project/theeverythinglibrary/" target="_blank"><img src="https://img.shields.io/pypi/status/theeverythinglibrary?label=Status"></a></p>
-    <p align="center" style="padding: 5px"><a href="https://pypi.org/project/theeverythinglibrary/" target="_blank"><img src="https://img.shields.io/pypi/l/theeverythinglibrary?label=License"></a></p>
+<div style="display: flex; align-items: center; justify-content: center;">
+    <p style="padding: 5px"><a href="https://pypi.org/project/theeverythinglibrary/" target="_blank"><img src="https://img.shields.io/pypi/v/theeverythinglibrary?label=Version"></a></p>
+    <p style="padding: 5px"><a href="https://pypi.org/project/theeverythinglibrary/" target="_blank"><img src="https://img.shields.io/badge/python-3.9%2B-green?logo=python&logoColor=white&label=Python"></a></p>
+    <p style="padding: 5px"><a href="https://pypi.org/project/theeverythinglibrary/" target="_blank"><img src="https://img.shields.io/github/stars/RobertArnosson/TheEverythingLibrary?logo=github&logoColor=white&label=Stars"></a></p>
+    <p style="padding: 5px"><a href="https://pypi.org/project/theeverythinglibrary/" target="_blank"><img src="https://img.shields.io/pypi/dm/theeverythinglibrary?logo=pypi&logoColor=white&label=Downloads"></a></p>
+    <p style="padding: 5px"><a href="https://pypi.org/project/theeverythinglibrary/" target="_blank"><img src="https://img.shields.io/pypi/status/theeverythinglibrary?label=Status"></a></p>
+    <p style="padding: 5px"><a href="https://pypi.org/project/theeverythinglibrary/" target="_blank"><img src="https://img.shields.io/pypi/l/theeverythinglibrary?label=License"></a></p>
 </div>
 <div style="padding: 40px"></div>
-<div align="center">
-    <p align="center" style="font-size: 32px; padding: 5px;">Description</p>
-    <p align="center" style="font-size: 16px;">This Python Library will have a LOT of different helper functions and classes that you can use for your own projects.</p>
+<div style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+    <p style="font-size: 32px; padding: 5px;">Description</p>
+    <p style="font-size: 16px;">This Python Library will have a LOT of different helper functions and classes that you can use for your own projects.</p>
 </div>
 <div style="padding: 40px"></div>
 
