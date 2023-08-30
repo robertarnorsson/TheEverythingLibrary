@@ -12,8 +12,6 @@ import base64
 import uuid
 from typing import Tuple
 
-
-
 class TELSymmetric:
     '''
     ## Symmetric Encryption
@@ -34,9 +32,6 @@ class TELSymmetric:
             - `iterations` (optional): The number of PBKDF2 iterations (default is 100000).
             - `salt_length` (optional): The length of the salt in bytes (default is 32).
             - `key_length` (optional): The length of the encryption key in bytes (default is 32).\n
-        ---
-        ### Exceptions
-            - If the provided `iterations`, `salt_length`, or `key_length` values are less than the specified minimums.\n
         '''
         if iterations < 100000:
             self.iterations = 100000
@@ -150,8 +145,6 @@ class TELSymmetric:
             raise InvalidTag("The password was wrong or the ciphertext has been tampered with")
         except Exception as e:
             raise Exception(f"Something whent wrong: {e}")
-
-
 
 class TELAsymmetric:
     '''

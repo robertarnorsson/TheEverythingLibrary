@@ -1,5 +1,5 @@
 import os
-from theeverythinglibrary.expetions import InvalidColor
+from theeverythinglibrary.exceptions import InvalidColor
 
 def cprint(text: str, color=None, bg_color=None):
     '''
@@ -43,6 +43,8 @@ def cprint(text: str, color=None, bg_color=None):
 
 class TELUtilities:
     '''
+    ## Utilities
+    ---
     This class provides usefull utility functions.
 
     **Note:** This class is a work in progress and subject to further development.

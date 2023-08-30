@@ -32,11 +32,14 @@ Find what you need
 ```python
 from theeverythinglibrary.encoding import TELEncoding
 from theeverythinglibrary.encryption import TELSymmetric, TELAsymmetric
+from theeverythinglibrary.enviroment import TELEnviroment
+from theeverythinglibrary.exceptions import InvalidFilenameError, InvalidColor
 from theeverythinglibrary.files import TELFileManager
 from theeverythinglibrary.math import TELMath
-from theeverythinglibrary.sorting import TELSorting
 from theeverythinglibrary.regex import TELRegex
+from theeverythinglibrary.sorting import TELSorting, TELSearching
 from theeverythinglibrary.utilities import TELUtilities
+from theeverythinglibrary.web import TELHTTP
 ```
 
 Then use it like this!
@@ -108,6 +111,26 @@ print(decoded_text)
 - Colored print
 - Project path
 - Project file path
+
+### Enviroment variables
+- Set variable
+- Get variable
+- Remove variable
+- List all variables
+- Does variable exist
+- Get multiple variables
+- Update variable
+- Append variable
+- Prepend variable
+- Restore variable
+
+### Web
+- Get http request
+- Post http request
+- Put http request
+- Delete http request
+- Download file
+- Get status codes
 
 ## Do you want to contribute?
 Please try and use the formatting rules from the [FORMATTING.md](https://github.com/RobertArnosson/TheEverythingLibrary/blob/main/FORMATTING.md) file
@@ -193,4 +216,10 @@ Please try and use the formatting rules from the [FORMATTING.md](https://github.
 * Updated README
 * Added environment variables utility
 * Added managing and sending http requests
+* Added more documentation
+
+0.3.1 (2023-08-30)
+------------------
+
+* Updated README
 * Added more documentation
