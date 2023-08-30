@@ -1,4 +1,4 @@
-# **THIS FILE IS NOT IN USE YET AND IS A SUBJECT TO CHANGE!**
+# **UNDER DEVELOPMENT: SUBJECT TO REVISION**
 
 # Project Formatting and Guidelines
 

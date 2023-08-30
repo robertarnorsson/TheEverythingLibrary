@@ -4,14 +4,28 @@ import shutil
 
 class TELFileManager:
     '''
-    WIP! Coming soon
+    This class provides utility functions for managing files and directories.
+
+    **Note:** This class is a work in progress and subject to further development.
     '''
     def __init__(self) -> None:
         pass
 
     def create_directory(self, dir: str) -> str:
         '''
-        WIP! Coming soon
+        ## Create Directory
+        ---
+        ### Description
+        Create a directory if it doesn't exist.\n
+        ---
+        ### Arguments
+            - `dir`: The directory path to create.\n
+        ---
+        ### Return
+            - The created directory path.\n
+        ---
+        ### Exceptions
+            - If an error occurs during directory creation.\n
         '''
         try:
             os.makedirs(dir, exist_ok=True)
@@ -19,11 +33,23 @@ class TELFileManager:
         except OSError as e:
             raise OSError(f"Error creating directory: {e}")
         except Exception as e:
-            raise Exception(f"Error deleting directory: {e}")
+            raise Exception(f"Error creating directory: {e}")
 
     def delete_directory(self, dir: str) -> bool:
         '''
-        WIP! Coming soon
+        ## Delete Directory
+        ---
+        ### Description
+        Delete a directory and its contents.\n
+        ---
+        ### Arguments
+            - `dir`: The directory path to delete.\n
+        ---
+        ### Return
+            - `True` if the directory was deleted successfully, otherwise `False`.\n
+        ---
+        ### Exceptions
+            - If an error occurs during directory deletion.\n
         '''
         try:
             if os.path.exists(dir) and os.path.isdir(dir):
@@ -35,7 +61,18 @@ class TELFileManager:
 
     def create_file(self, dir: str, name: str, type: str) -> None:
         '''
-        WIP! Coming soon
+        ## Create File
+        ---
+        ### Description
+        Create a file in the specified directory.\n
+        ---
+        ### Arguments
+            - `dir`: The directory path where the file will be created.
+            - `name`: The name of the file.
+            - `type`: The file type (extension).\n
+        ---
+        ### Exceptions
+            - If the provided file name and type are not valid.\n
         '''
         dir = dir.replace("/", "\\")
         type.replace(".", "")
@@ -45,11 +82,20 @@ class TELFileManager:
             with open(os.path.join(dir, f'{name}.{type}'), 'w+') as file:
                 file.close()
         except Exception as e:
-            raise Exception(f"Error ceating file: {e}")
-    
+            raise Exception(f"Error creating file: {e}")
+
     def delete_file(self, file: str) -> None:
         '''
-        WIP! Coming soon
+        ## Delete File
+        ---
+        ### Description
+        Delete a file.\n
+        ---
+        ### Arguments
+            - `file`: The path of the file to delete.\n
+        ---
+        ### Exceptions
+            - If the provided path does not lead to a valid file.\n
         '''
         file = file.replace("/", "\\")
         file_name = file.split('\\')[len(file.split('\\'))-1]
@@ -62,7 +108,19 @@ class TELFileManager:
 
     def list_files(self, dir: str) -> list[str]:
         '''
-        WIP! Coming soon
+        ## List Files
+        ---
+        ### Description
+        List all files in a directory.\n
+        ---
+        ### Arguments
+            - `dir`: The directory path to list files from.\n
+        ---
+        ### Return
+            - A list of file names in the directory.\n
+        ---
+        ### Exceptions
+            - If an error occurs during listing.\n
         '''
         try:
             if os.path.exists(dir) and os.path.isdir(dir):
@@ -74,7 +132,20 @@ class TELFileManager:
 
     def copy_file(self, file: str, dest_dir: str) -> bool:
         '''
-        WIP! Coming soon
+        ## Copy File
+        ---
+        ### Description
+        Copy a file to a destination directory.\n
+        ---
+        ### Arguments
+            - `file`: The path of the file to copy.
+            - `dest_dir`: The destination directory path.\n
+        ---
+        ### Return
+            - `True` if the file was copied successfully, otherwise `False`.\n
+        ---
+        ### Exceptions
+            - If an error occurs during copying.\n
         '''
         file = file.replace("/", "\\")
         file_name = file.split('\\')[len(file.split('\\'))-1]
@@ -89,7 +160,20 @@ class TELFileManager:
 
     def move_file(self, file: str, dest_dir: str) -> bool:
         '''
-        WIP! Coming soon
+        ## Move File
+        ---
+        ### Description
+        Move a file to a destination directory.\n
+        ---
+        ### Arguments
+            - `file`: The path of the file to move.
+            - `dest_dir`: The destination directory path.\n
+        ---
+        ### Return
+            - `True` if the file was moved successfully, otherwise `False`.\n
+        ---
+        ### Exceptions
+            - If an error occurs during moving.\n
         '''
         file = file.replace("/", "\\")
         file_name = file.split('\\')[len(file.split('\\'))-1]

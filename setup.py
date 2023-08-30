@@ -26,7 +26,8 @@ setup(
     packages=find_packages(),
     install_requires= [
         "cryptography",
-        "uuid"
+        "uuid",
+        "requests"
     ],
     python_requires=">=3.9",
     project_urls={

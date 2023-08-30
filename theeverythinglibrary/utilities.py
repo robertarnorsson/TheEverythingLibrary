@@ -3,7 +3,18 @@ from theeverythinglibrary.expetions import InvalidColor
 
 def cprint(text: str, color=None, bg_color=None):
     '''
-    WIP! Coming soon
+    ## Print Colored Text
+    ---
+    ### Description
+    Print text in the terminal with specified foreground and background colors.\n
+    ---
+    ### Arguments
+        - `text`: The text to be printed.
+        - `color`: The desired text color. Available colors: 'black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white'.
+        - `bg_color`: The desired background color. Available colors: 'black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white'.\n
+    ---
+    ### Exceptions
+        - If an invalid color name is provided, raises `InvalidColor`.\n
     '''
     COLORS = {
         'black': '30',
@@ -32,19 +43,33 @@ def cprint(text: str, color=None, bg_color=None):
 
 class TELUtilities:
     '''
-    WIP! Coming soon
+    This class provides usefull utility functions.
+
+    **Note:** This class is a work in progress and subject to further development.
     '''
     def __init__(self) -> None:
         pass
 
-    def project_path(self):
+    def project_path(self) -> str:
         '''
-        WIP! Coming soon
+        ## Get Project Path
+        ---
+        ### Description
+        Get the absolute path to the directory containing the current project.\n
+        ---
+        ### Return
+            - The absolute path to the project directory.\n
         '''
         return os.path.abspath(os.path.dirname(__file__))
 
-    def project_file_path(self):
+    def project_file_path(self) -> str:
         '''
-        WIP! Coming soon
+        ## Get Project File Path
+        ---
+        ### Description
+        Get the absolute path of the current script file within the project.\n
+        ---
+        ### Return
+            - The absolute path to the script file.\n
         '''
         return os.path.abspath(os.path.abspath(__file__))
