@@ -2,10 +2,13 @@ import os
 
 class TELEnviroment:
     '''
+    ## Enviroment Variables
+    ---
     This class provides utility functions for managing environment variables.
 
     **Note:** This class is a work in progress and subject to further development.
     '''
+    
     def __init__(self):
         pass
 

@@ -1,6 +1,6 @@
 import random
 
-class TELSorting():
+class TELSorting:
     '''
     WIP! Coming soon
     '''
@@ -94,7 +94,7 @@ class TELSorting():
             random.shuffle(arr)
         return arr
 
-class TELSearching():
+class TELSearching:
     '''
     WIP! Coming soon
     '''

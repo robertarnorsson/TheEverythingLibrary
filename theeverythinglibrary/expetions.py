@@ -5,7 +5,6 @@ class InvalidFilenameError(Exception):
         super().__init__(self.message)
 
 class InvalidColor(Exception):
-    
     def __init__(self, color):
         self.color = color
         self.message = f'"{color}" is not a valid color!'

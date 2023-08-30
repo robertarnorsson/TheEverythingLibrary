@@ -4,6 +4,8 @@ import shutil
 
 class TELFileManager:
     '''
+    ## File Manager
+    ---
     This class provides utility functions for managing files and directories.
 
     **Note:** This class is a work in progress and subject to further development.

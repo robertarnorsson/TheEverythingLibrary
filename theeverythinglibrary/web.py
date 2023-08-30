@@ -2,10 +2,13 @@ import requests
 
 class TELHTTP:
     '''
+    ## HTTP Requests
+    ---
     This class provides utility functions for managing and sending http requests.
 
     **Note:** This class is a work in progress and subject to further development.
     '''
+
     def __init__(self):
         pass
 
