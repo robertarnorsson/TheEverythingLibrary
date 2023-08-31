@@ -238,3 +238,9 @@ Please try and use the formatting rules from the [FORMATTING.md](https://github.
 
 * Updated README
 * Added more documentation
+
+0.3.2 (2023-08-31)
+------------------
+
+* Added translation
+* Added file search
