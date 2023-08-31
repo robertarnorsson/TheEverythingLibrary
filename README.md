@@ -1,13 +1,13 @@
 <br/>
 <div align="center">
-<img src="https://raw.githubusercontent.com/RobertArnosson/TheEverythingLibraryAssets/main/TELLogo-800x250.png">
+<a href="https://pypi.org/project/theeverythinglibrary/" target="_blank"><img src="https://raw.githubusercontent.com/RobertArnosson/TheEverythingLibraryAssets/main/TELLogo-800x250.png"></a>
 <br/>
 <br/>
 <br/>
 <a href="https://pypi.org/project/theeverythinglibrary/" target="_blank"><img src="https://img.shields.io/pypi/v/theeverythinglibrary?style=for-the-badge&logo=pypi&logoColor=%2327CC88&label=Version&labelColor=%23061122&color=%2327CC88"></a>
 <a href="https://pypi.org/project/theeverythinglibrary/" target="_blank"><img src="https://img.shields.io/badge/python-3.9%2B-green?style=for-the-badge&logo=python&logoColor=%2327CC88&label=Python&labelColor=%23061122&color=%2327CC88"></a>
 <a href="https://pypi.org/project/theeverythinglibrary/" target="_blank"><img src="https://img.shields.io/github/stars/RobertArnosson/TheEverythingLibrary?style=for-the-badge&logo=github&logoColor=%2327CC88&label=Stars&labelColor=%23061122&color=%2327CC88"></a>
-<a href="https://pypi.org/project/theeverythinglibrary/" target="_blank"><img src="https://img.shields.io/pypi/dm/theeverythinglibrary?style=for-the-badge&logo=docusign&logoColor=%2327CC88&label=Downloads&labelColor=%23061122&color=%2327CC88"></a>
+<a href="https://pypistats.org/packages/theeverythinglibrary" target="_blank"><img src="https://img.shields.io/pypi/dm/theeverythinglibrary?style=for-the-badge&logo=docusign&logoColor=%2327CC88&label=Downloads&labelColor=%23061122&color=%2327CC88"></a>
 <a href="https://pypi.org/project/theeverythinglibrary/" target="_blank"><img src="https://img.shields.io/pypi/status/theeverythinglibrary?style=for-the-badge&logoColor=%2327CC88&label=Status&labelColor=%23061122&color=%2327CC88"></a>
 <a href="https://pypi.org/project/theeverythinglibrary/" target="_blank"><img src="https://img.shields.io/pypi/l/theeverythinglibrary?style=for-the-badge&logoColor=%2327CC88&label=License&labelColor=%23061122&color=%2327CC88"></a>
 </div>
@@ -20,6 +20,16 @@
 How to install the library 
 ```bash
 pip install theeverythinglibrary
+```
+\
+How to upgrade the library 
+```bash
+pip install --upgrade theeverythinglibrary
+```
+\
+How to uninstall the library 
+```bash
+pip uninstall theeverythinglibrary
 ```
 
 # How to use
@@ -38,6 +48,7 @@ from theeverythinglibrary.files import TELFileManager
 from theeverythinglibrary.math import TELMath
 from theeverythinglibrary.regex import TELRegex
 from theeverythinglibrary.sorting import TELSorting, TELSearching
+from theeverythinglibrary.translator import TELTranslator
 from theeverythinglibrary.utilities import TELUtilities
 from theeverythinglibrary.web import TELHTTP
 ```
@@ -131,6 +142,10 @@ print(decoded_text)
 - Delete http request
 - Download file
 - Get status codes
+
+### Translator
+- Translate
+- Get available languages
 
 ## Do you want to contribute?
 Please try and use the formatting rules from the [FORMATTING.md](https://github.com/RobertArnosson/TheEverythingLibrary/blob/main/FORMATTING.md) file

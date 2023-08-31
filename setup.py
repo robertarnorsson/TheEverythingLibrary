@@ -27,7 +27,8 @@ setup(
     install_requires= [
         "cryptography",
         "uuid",
-        "requests"
+        "requests",
+        "googletrans"
     ],
     python_requires=">=3.9",
     project_urls={

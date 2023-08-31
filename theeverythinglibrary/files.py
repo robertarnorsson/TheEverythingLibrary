@@ -188,3 +188,33 @@ class TELFileManager:
             return False
         except Exception as e:
             raise Exception(f"Error moving file: {e}")
+    
+    def search(self, dir: str, extensions: list = None, keywords=None, min_size=None, max_size=None):
+        found_files = []
+
+        for root, _, files in os.walk(dir):
+            for file in files:
+                file_path = os.path.join(root, file)
+                file_size = os.path.getsize(file_path)
+
+                if extensions and not any(file.endswith(ext) for ext in extensions):
+                    continue
+
+                if keywords and not all(keyword in file for keyword in keywords):
+                    continue
+
+                if min_size is not None and file_size < min_size:
+                    continue
+
+                if max_size is not None and file_size > max_size:
+                    continue
+
+                found_files.append(file_path)
+
+        return found_files
+
+fm = TELFileManager()
+
+files = fm.search('C:\\')
+print(files)
+print(len(files))
