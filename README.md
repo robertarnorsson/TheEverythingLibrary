@@ -86,8 +86,9 @@ print(decoded_text)
 - Create directory
 - Delete directory
 - List files in directory
-- Copy files from directory to different directory
-- Move files from directory to different directory
+- Copy files from one directory to different directory
+- Move files from one directory to different directory
+- Search files in directory
 
 ### Math Functions
 - Add two numbers

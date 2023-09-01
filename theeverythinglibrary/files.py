@@ -189,7 +189,19 @@ class TELFileManager:
         except Exception as e:
             raise Exception(f"Error moving file: {e}")
     
-    def search(self, dir: str, extensions: list = None, keywords=None, min_size=None, max_size=None):
+    def search(self, dir: str, extensions: list[str] = None, keywords: list[str] = None, min_size: int = None, max_size: int = None):
+        dir = dir.replace("/", "\\")
+
+        new_extensions = []
+        for extension in extensions:
+            extension.replace(".", "")
+            if re.match(r'[a-zA-Z0-9]+$'):
+                new_extensions.append(extension)
+            else:
+                print(f'"{extension}" is not a valid extention')
+                continue
+        extensions = new_extensions
+
         found_files = []
 
         for root, _, files in os.walk(dir):
@@ -212,9 +224,3 @@ class TELFileManager:
                 found_files.append(file_path)
 
         return found_files
-
-fm = TELFileManager()
-
-files = fm.search('C:\\')
-print(files)
-print(len(files))
