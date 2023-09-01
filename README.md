@@ -245,3 +245,11 @@ Please try and use the formatting rules from the [FORMATTING.md](https://github.
 
 * Added translation
 * Added file search
+
+0.3.3 (2023-09-1)
+------------------
+
+* Improved file search
+* Added file info
+* Added class `File`
+* Added byte converter

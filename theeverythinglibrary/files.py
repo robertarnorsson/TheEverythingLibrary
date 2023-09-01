@@ -1,6 +1,7 @@
 import os
 import re
 import shutil
+import datetime
 
 class TELFileManager:
     '''
@@ -10,6 +11,66 @@ class TELFileManager:
 
     **Note:** This class is a work in progress and subject to further development.
     '''
+
+    class File:
+        '''
+        ## File Class
+        ---
+        ### Description
+        Represents a file with various attributes such as name, extension, path, size, permissions, user ID, group ID,
+        last access time, last modification time, and creation time.\n
+        ---
+        ### Constructor
+        - `name`: The name of the file.
+        - `extension`: The file extension (not including the dot).
+        - `path`: The path to the file.
+        - `size`: The size of the file in bytes.
+        - `permissions`: The file's permissions or access rights.
+        - `user_id`: The user ID of the file owner.
+        - `group_id`: The group ID of the file owner's group.
+        - `last_access_time`: The timestamp of the last access to the file.
+        - `last_modification_time`: The timestamp of the last modification of the file.
+        - `creation_time`: The timestamp of the file's creation.
+        '''
+        def __init__(self, name, extension, path, size, permissions, user_id, group_id, last_access_time, last_modification_time, creation_time) -> None:
+            self.name = name
+            self.extension = extension
+            self.path = path
+            self.size = size
+            self.permissions = permissions
+            self.user_id = user_id
+            self.group_id = group_id
+            self.last_access_time = last_access_time
+            self.last_modification_time = last_modification_time
+            self.creation_time = creation_time
+        
+        def display(self):
+            '''
+            ## Display
+            ---
+            ### Description
+            Prints info about a `File` class to the console.\n
+            ---
+            ### Arguments
+                - None\n
+            ---
+            ### Return
+                - None.\n
+            ---
+            ### Exceptions
+                - None\n
+            '''
+            print(f'---------------------- | Info for "{self.name}" | ----------------------')
+            print(f'Name:                     {self.name}')
+            print(f'Extension:                {self.extension}')
+            print(f'Path:                     {self.path}')
+            print(f'Size:                     {self.size} bytes | {round(self.size / 1024, 4)} KB | {round(self.size / (1024 * 1024), 4)} MB | {round(self.size / (1024 * 1024 * 1024), 4)} GB')
+            print(f'Permissions:              {self.permissions}')
+            print(f'User ID:                  {self.user_id}')
+            print(f'Group ID:                 {self.group_id}')
+            print(f'Last Access Time:         {self.last_access_time}')
+            print(f'Last Modification Time:   {self.last_modification_time}')
+            print(f'Creation Time:            {self.creation_time}')
     
     def __init__(self) -> None:
         pass
@@ -190,37 +251,128 @@ class TELFileManager:
             raise Exception(f"Error moving file: {e}")
     
     def search(self, dir: str, extensions: list[str] = None, keywords: list[str] = None, min_size: int = None, max_size: int = None):
-        dir = dir.replace("/", "\\")
+        '''
+        ## Search Files
+        ---
+        ### Description
+        Recursively search for files in a directory based on specified criteria.\n
+        ---
+        ### Arguments
+            - `dir`: The directory in which to start the search.
+            - `extensions`: A list of file extensions to filter by (optional).
+            - `keywords`: A list of keywords to filter files by name (optional).
+            - `min_size`: The minimum file size in bytes (optional).
+            - `max_size`: The maximum file size in bytes (optional).
+        ---
+        ### Return
+            - A list of file paths that meet the specified search criteria.\n
+        ---
+        ### Exceptions
+            - If an error occurs during searching.\n
+        '''
+        try:
+            dir = dir.replace("/", "\\")
 
-        new_extensions = []
-        for extension in extensions:
-            extension.replace(".", "")
-            if re.match(r'[a-zA-Z0-9]+$'):
-                new_extensions.append(extension)
-            else:
-                print(f'"{extension}" is not a valid extention')
-                continue
-        extensions = new_extensions
+            if extensions:
+                new_extensions = []
+                for extension in extensions:
+                    extension.replace(".", "")
+                    if re.match(r'[a-zA-Z0-9]+$', extension):
+                        new_extensions.append(extension)
+                    else:
+                        print(f'"{extension}" is not a valid extention')
+                        continue
+                extensions = new_extensions
 
-        found_files = []
+            found_files = []
 
-        for root, _, files in os.walk(dir):
-            for file in files:
-                file_path = os.path.join(root, file)
-                file_size = os.path.getsize(file_path)
+            for root, _, files in os.walk(dir):
+                for file in files:
+                    file_path = os.path.join(root, file)
+                    file_size = os.path.getsize(file_path)
 
-                if extensions and not any(file.endswith(ext) for ext in extensions):
-                    continue
+                    if extensions and not any(file.endswith(ext) for ext in extensions):
+                        continue
 
-                if keywords and not all(keyword in file for keyword in keywords):
-                    continue
+                    if keywords and not all(keyword in file for keyword in keywords):
+                        continue
 
-                if min_size is not None and file_size < min_size:
-                    continue
+                    if min_size is not None and file_size < min_size:
+                        continue
 
-                if max_size is not None and file_size > max_size:
-                    continue
+                    if max_size is not None and file_size > max_size:
+                        continue
 
-                found_files.append(file_path)
+                    found_files.append(file_path)
 
-        return found_files
+            return found_files
+        except Exception as e:
+            raise Exception(f"Something went wrong: {e}")
+
+    def info(self, file) -> File:
+        '''
+        ## File info
+        ---
+        ### Description
+        Get info about a file.\n
+        ---
+        ### Arguments
+            - `file`: The file to get the info from.\n
+        ---
+        ### Return
+            - A list of file paths that meet the specified search criteria.\n
+        ---
+        ### Exceptions
+            - If an error occurs during searching.\n
+        '''
+        if not os.path.exists(file):
+            raise Exception(f'"{file}" is not a valid file or the file was not found.')
+        
+        stat_info = os.stat(file)
+
+        file_info = self.File(
+            name = os.path.basename(file),
+            extension = str(os.path.basename(file)).split(".")[-1],
+            path = os.path.abspath(file),
+            size = stat_info.st_size,
+            permissions = stat_info.st_mode,
+            user_id = stat_info.st_uid,
+            group_id = stat_info.st_gid,
+            last_access_time = datetime.datetime.fromtimestamp(stat_info.st_atime).strftime('%Y-%m-%d %H:%M:%S'),
+            last_modification_time = datetime.datetime.fromtimestamp(stat_info.st_mtime).strftime('%Y-%m-%d %H:%M:%S'),
+            creation_time = datetime.datetime.fromtimestamp(stat_info.st_ctime).strftime('%Y-%m-%d %H:%M:%S'),
+        )
+
+        return file_info
+    
+    def convert(self, bytes: int, unit: str, decimals: int = 4) -> float:
+        '''
+        ## Convert Bytes
+        ---
+        ### Description
+        Converts a given number of bytes into specified units (e.g., kilobytes, megabytes, gigabytes) with a specified number of decimal places.\n
+        ---
+        ### Arguments
+        - `bytes`: The number of bytes to convert.
+        - `unit`: The target unit to convert to (options: 'bytes', 'kb', 'mb', 'gb').
+        - `decimals`: The number of decimal places in the result (optional).\n
+        ---
+        ### Return
+        - The converted size in the specified unit with the specified number of decimal places.\n
+        ---
+        ### Exceptions
+        - `Exception`: Raised if an invalid unit is provided.\n
+        '''
+        unit = unit.lower().strip()
+        conversion_factors = {
+            'bytes': 1,
+            'kb': 1024,
+            'mb': 1024 * 1024,
+            'gb': 1024 * 1024 * 1024
+        }
+
+        if unit not in conversion_factors:
+            raise Exception(f'"{unit}" is not a valid unit. Units: (bytes, kb, mb, gb)')
+
+        converted_size = bytes / conversion_factors[unit]
+        return round(converted_size, decimals)
