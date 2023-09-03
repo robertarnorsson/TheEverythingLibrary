@@ -253,7 +253,7 @@ Please try and use the formatting rules from the [FORMATTING.md](https://github.
 * Added class `File`
 * Added byte converter
 
-0.3.4 (2023-09-3)
+0.3.4 - 0.3.5 (2023-09-3)
 ------------------
 
 * Cleanup

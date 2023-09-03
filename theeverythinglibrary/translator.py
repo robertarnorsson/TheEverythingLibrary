@@ -11,9 +11,9 @@ class TELTranslator:
     '''
     
     def __init__(self):
-        self.gtranslator = Translator()
+        self.module = Translator()
 
-    def translat(self, text: str, source_language: str = "auto", target_language: str = "en") -> str:
+    def translate(self, text: str, language: str = "en", source_language: str = "auto") -> str:
         '''
         ## Translate
         ---
@@ -23,7 +23,7 @@ class TELTranslator:
         ### Arguments
             - `text`: The text to be translated.
             - `source_language`: The source language of the text. Default is "auto".
-            - `target_language`: The target language for translation. Default is "en".\n
+            - `language`: The language for translation. Default is "en".\n
         ---
         ### Return
             - The translated text in the target language.\n
@@ -32,7 +32,7 @@ class TELTranslator:
             - If an error occurs during translation.\n
         '''
         try:
-            translated = self.gtranslator.translate(text=text, src=source_language, dest=target_language)
+            translated = self.module.translate(text=text, src=source_language, dest=language)
             return translated.text
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")

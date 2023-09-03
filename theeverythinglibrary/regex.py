@@ -4,22 +4,30 @@ class TELRegex:
     '''
     ## Regex
     ---
-    This class provides utility functions for regular expressions (regex).
+    This class provides utility functions for regular expressions (regex).\n
 
-    **Note:** This class is a work in progress and subject to further development.
+    **Note:** This class is a work in progress and subject to further development.\n
+    ---
+    ### Description
+    Initialize the TELRegex utility with a default pattern.\n
+    \
+    `common_patterns` has these patterns
+        - `email`
+        - `url`
+        - `date`
+        - `phone`
+        - `ip`
+        - `color`
+        - `word`
+        - `text`
+        - `number`
+    ---
+    ### Arguments
+        - `default`: The default regex pattern used in methods when no specific pattern is provided.\n
     '''
 
-    def __init__(self, default_pattern):
-        '''
-        ## Constructor
-        ---
-        ### Description
-        Initialize the TELRegex utility with a default pattern.\n
-        ---
-        ### Arguments
-            - `default_pattern`: The default regex pattern used in methods when no specific pattern is provided.\n
-        '''
-        self.default_pattern = default_pattern
+    def __init__(self, default=None):
+        self.default = default if default != None else r'[A-Za-z]+'
 
         self.common_patterns = {
             "email": r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b',
@@ -29,7 +37,7 @@ class TELRegex:
             "ip": r'\b(?:\d{1,3}\.){3}\d{1,3}\b',
             "color": r'#[0-9A-Fa-f]{6}',
             "word": r'\b\w+\b',
-            "text": r'[a-z]+',
+            "text": r'[A-Za-z]+',
             "number": r'\d+(?:\.\d+)?'
         }
     
