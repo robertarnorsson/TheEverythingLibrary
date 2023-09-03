@@ -32,7 +32,6 @@ def cprint(text: str, color=None, bg_color=None):
     if color != None and color not in COLORS:
         raise InvalidColor(color=color)
     
-    # Check if the specified colors are valid
     background_code = str(int(COLORS.get(bg_color, '')) + 10) if bg_color != None else "0"
     text_code = COLORS.get(color, '') if color != None else "0"
     

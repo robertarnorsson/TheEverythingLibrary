@@ -48,12 +48,3 @@ class TELTranslator:
             - A dictionary containing the language codes as keys and their corresponding names as values.\n
         '''
         return LANGUAGES
-        
-
-trans = TELTranslator()
-
-text = "Hello World!"
-
-translated_text = trans.translat(text=text, target_language="no")
-
-print(translated_text)

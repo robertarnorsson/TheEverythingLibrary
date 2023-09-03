@@ -5,7 +5,7 @@ with open('README.md') as readme_file:
 
 setup(
     name="theeverythinglibrary",
-    version="0.3.3",
+    version="0.3.4",
     description="Library with a module for almost everything",
     url="https://github.com/RobertArnosson/TheEverythingLibrary",
     author="Robert Arnorsson",
@@ -32,6 +32,7 @@ setup(
     ],
     python_requires=">=3.9",
     project_urls={
+        "Documentation": "https://github.com/RobertArnosson/TheEverythingLibrary/wiki",
         "Bug Reports": "https://github.com/RobertArnosson/TheEverythingLibrary/issues",
         "Source": "https://github.com/RobertArnosson/TheEverythingLibrary",
     },

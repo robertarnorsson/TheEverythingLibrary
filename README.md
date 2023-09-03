@@ -71,7 +71,6 @@ print(decoded_text)
 ```
 
 # Features
-## Current features
 ### Encoding
 - Base64 encoding and decoding
 - Hex encoding and decoding
@@ -81,6 +80,18 @@ print(decoded_text)
 - Symmetric encryption
 - Asymmetric encryption
 - Public and Private key managment
+
+### Enviroment variables
+- Set variable
+- Get variable
+- Remove variable
+- List all variables
+- Does variable exist
+- Get multiple variables
+- Update variable
+- Append variable
+- Prepend variable
+- Restore variable
 
 ### File Managment
 - Create directory
@@ -98,6 +109,14 @@ print(decoded_text)
 - Find average from list of numbers
 - Find median from list of numbers
 
+### Regular expression
+- Match
+- Search
+- Find all
+- Replace
+- Escape
+- Split
+
 ### Sorting algorithms
 - Bubble sort
 - Selection sort
@@ -111,30 +130,14 @@ print(decoded_text)
 - Linear search
 - Binary search
 
-### Regular expression
-- Match
-- Search
-- Find all
-- Replace
-- Escape
-- Split
+### Translator
+- Translate
+- Get available languages
 
 ### Utilities
 - Colored print
 - Project path
 - Project file path
-
-### Enviroment variables
-- Set variable
-- Get variable
-- Remove variable
-- List all variables
-- Does variable exist
-- Get multiple variables
-- Update variable
-- Append variable
-- Prepend variable
-- Restore variable
 
 ### Web
 - Get http request
@@ -143,10 +146,6 @@ print(decoded_text)
 - Delete http request
 - Download file
 - Get status codes
-
-### Translator
-- Translate
-- Get available languages
 
 ## Do you want to contribute?
 Please try and use the formatting rules from the [FORMATTING.md](https://github.com/RobertArnosson/TheEverythingLibrary/blob/main/FORMATTING.md) file
@@ -253,3 +252,8 @@ Please try and use the formatting rules from the [FORMATTING.md](https://github.
 * Added file info
 * Added class `File`
 * Added byte converter
+
+0.3.4 (2023-09-3)
+------------------
+
+* Cleanup
