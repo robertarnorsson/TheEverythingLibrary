@@ -161,3 +161,6 @@ cython_debug/
 
 # Asymmetrical keys
 *.pem
+
+# Test
+test.py

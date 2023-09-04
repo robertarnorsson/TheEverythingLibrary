@@ -2,6 +2,7 @@ import os
 import re
 import shutil
 import datetime
+import concurrent.futures
 
 class TELFileManager:
     '''
@@ -73,6 +74,10 @@ class TELFileManager:
             print(f'Last Access Time:         {self.last_access_time}')
             print(f'Last Modification Time:   {self.last_modification_time}')
             print(f'Creation Time:            {self.creation_time}')
+        
+        def content(self):
+            with open(self.path) as f:
+                return f.read()
     
     def __init__(self) -> None:
         pass
@@ -253,10 +258,11 @@ class TELFileManager:
             raise Exception(f"Error moving file: {e}")
 
     def search(self, dir: str, extensions: list[str] = None, keywords: list[str] = None,
-            exclude_extensions: list[str] = None, exclude_keywords: list[str] = None,
-            exclude_dirs: list[str] = None, max_depth: int = None,
-            min_size: int = None, max_size: int = None,
-            list_empty_dirs: bool = False, divider: str = "\\"):
+               exclude_extensions: list[str] = None, exclude_keywords: list[str] = None,
+               exclude_dirs: list[str] = None, depth: int = None,
+               min_size: int = None, max_size: int = None,
+               list_dirs: bool = False, divider: str = "\\",
+               last_item: bool = False):
         '''
         ## Search Files
         ---
@@ -270,10 +276,11 @@ class TELFileManager:
             - `exclude_extensions`: A list of file extensions to exclude (optional).
             - `exclude_keywords`: A list of keywords to exclude from file names (optional).
             - `exclude_dirs`: A list of directory names to exclude (optional).
-            - `max_depth`: The maximum depth of recursion in the file structure (optional).
+            - `depth`: The maximum depth of recursion in the file structure (optional).
             - `min_size`: The minimum file size in bytes (optional).
             - `max_size`: The maximum file size in bytes (optional).
-            - `list_empty_dirs`: Whether to list directories even if there are no files in them (optional).
+            - `list_dirs`: Whether to list directories even if there are no files in them (optional). ! PERFORMANCE ISSUES !
+            - `last_item`: Whether to list the last item when depth is used (optional).
             - `divider`: The directory separator character (optional).
         ---
         ### Return
@@ -283,81 +290,66 @@ class TELFileManager:
             - If an error occurs during searching.\n
         '''
         try:
-            dir = dir.replace("/", "\\")
+            if depth is not None and not isinstance(depth, int):
+                raise TypeError(f'Depth must be "int" not "{type(depth).__name__}"')
+
+            def is_valid_extension(extension):
+                return re.match(r'^[a-zA-Z0-9]+$', extension)
 
             if extensions:
-                new_extensions = []
-                for extension in extensions:
-                    extension.replace(".", "")
-                    if re.match(r'[a-zA-Z0-9]+$', extension):
-                        new_extensions.append(extension)
+                extensions = [ext.lstrip('.').lower() for ext in extensions if is_valid_extension(ext)]
+            if exclude_extensions:
+                exclude_extensions = [ext.lstrip('.').lower() for ext in exclude_extensions if is_valid_extension(ext)]
+
+            def should_exclude(file):
+                file_extension = os.path.splitext(file)[1].lower()
+                return (exclude_extensions and file_extension.lstrip('.') in exclude_extensions) or \
+                    (exclude_keywords and any(keyword in file for keyword in exclude_keywords))
+
+            def should_include(file):
+                file_extension = os.path.splitext(file)[1].lower()
+                return (not extensions or file_extension.lstrip('.') in extensions) and \
+                    (not keywords or all(keyword in file for keyword in keywords)) and \
+                    (min_size is None or os.path.getsize(file) >= min_size) and \
+                    (max_size is None or os.path.getsize(file) <= max_size)
+
+            max_depth = depth - 1 if depth is not None else None
+
+            def file_generator(root):
+                for entry in os.scandir(root):
+                    if entry.is_file():
+                        file_path = entry.path
+                        if should_include(file_path) and not should_exclude(file_path):
+                            yield normalize_path(file_path)
+                    elif entry.is_dir():
+                        if max_depth is None or root[len(dir):].count(os.path.sep) <= max_depth:
+                            if not exclude_dirs or not any(exclude_dir in entry.name for exclude_dir in exclude_dirs):
+                                yield from file_generator(entry.path)
+
+            def dir_generator(root):
+                for entry in os.scandir(root):
+                    if entry.is_dir():
+                        if max_depth is None or root[len(dir):].count(os.path.sep) <= max_depth:
+                            if not exclude_dirs or not any(exclude_dir in entry.name for exclude_dir in exclude_dirs):
+                                if last_item:
+                                    yield normalize_path(entry.path)
+                                else:
+                                    yield from dir_generator(entry.path)
+
+            normalize_path = lambda path: path.replace("\\", divider)
+
+            with concurrent.futures.ThreadPoolExecutor() as executor:
+                found_files = list(executor.map(file_generator, [dir]))
+                if list_dirs:
+                    if last_item:
+                        found_dirs = list(executor.map(dir_generator, [dir]))
                     else:
-                        print(f'"{extension}" is not a valid extension')
-                        continue
-                extensions = new_extensions
-
-            found_files = []
-            found_empty_dirs = []  # Store empty directories if list_empty_dirs is True.
-
-            for root, dirs, files in os.walk(dir):
-                # Calculate the depth of the current directory.
-                depth = root[len(dir):].count(os.path.sep)
-
-                # Check if the current directory should be excluded based on depth.
-                if max_depth is not None and depth > max_depth:
-                    continue
-
-                print(files)
-                print(dir)
-                print(root)
-
-                # Check if the current directory should be excluded based on name.
-                if exclude_dirs and not any(exclude_dir in dirs for exclude_dir in exclude_dirs):
-                    continue
-
-                if len(files) == 0:
-                    if list_empty_dirs:
-                        found_empty_dirs.append(root)
+                        found_dirs = list(dir_generator(dir))
                 else:
-                    for file in files:
-                        file_path = os.path.join(root, file)
-                        file_size = os.path.getsize(file_path)
+                    found_dirs = []
 
-                        # Check if the file should be excluded based on extensions or keywords.
-                        if (exclude_extensions and any(file.endswith(ext) for ext in exclude_extensions)) or \
-                        (exclude_keywords and any(keyword in file for keyword in exclude_keywords)):
-                            continue
+            return found_files + found_dirs
 
-                        # Check if the file meets the inclusion criteria.
-                        if extensions and not any(file.endswith(ext) for ext in extensions):
-                            continue
-
-                        if keywords and not all(keyword in file for keyword in keywords):
-                            continue
-
-                        if min_size is not None and file_size < min_size:
-                            continue
-
-                        if max_size is not None and file_size > max_size:
-                            continue
-
-                        found_files.append(file_path)
-
-            new_found_files = []
-            new_found_empty_dirs = []
-
-            for file_path in found_files:
-                file_path = file_path.replace("\\", divider)
-                new_found_files.append(file_path)
-            
-            for empty_dir in found_empty_dirs:
-                empty_dir = empty_dir.replace("\\", divider)
-                new_found_empty_dirs.append(empty_dir)
-
-            if list_empty_dirs:
-                new_found_files.extend(new_found_empty_dirs)
-
-            return new_found_files
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
 

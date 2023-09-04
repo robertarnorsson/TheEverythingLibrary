@@ -1,6 +1,6 @@
 <br/>
 <div align="center">
-<a href="https://pypi.org/project/theeverythinglibrary/" target="_blank"><img src="https://raw.githubusercontent.com/RobertArnosson/TheEverythingLibraryAssets/main/TELLogo-800x250.png"></a>
+<a href="https://pypi.org/project/theeverythinglibrary/" target="_blank"><img src="https://raw.githubusercontent.com/RobertArnosson/TheEverythingLibraryAssets/main/TELLogo-780x240.png"></a>
 <br/>
 <br/>
 <br/>
@@ -99,7 +99,7 @@ print(decoded_text)
 - List files in directory
 - Copy files from one directory to different directory
 - Move files from one directory to different directory
-- Search files in directory
+- Advanced recursive file searching
 
 ### Math Functions
 - Add two numbers
@@ -245,7 +245,7 @@ Please try and use the formatting rules from the [FORMATTING.md](https://github.
 * Added translation
 * Added file search
 
-0.3.3 (2023-09-1)
+0.3.3 (2023-09-01)
 ------------------
 
 * Improved file search
@@ -253,7 +253,12 @@ Please try and use the formatting rules from the [FORMATTING.md](https://github.
 * Added class `File`
 * Added byte converter
 
-0.3.4 - 0.3.5 (2023-09-3)
+0.3.4 - 0.3.5 (2023-09-03)
 ------------------
 
 * Cleanup
+
+0.3.6 (2023-09-04)
+------------------
+
+* Rewrote file search for improved performance (works but might find bugs)
