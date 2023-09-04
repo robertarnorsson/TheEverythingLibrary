@@ -32,9 +32,10 @@ class TELFileManager:
         - `last_modification_time`: The timestamp of the last modification of the file.
         - `creation_time`: The timestamp of the file's creation.
         '''
-        def __init__(self, name, extension, path, size, permissions, user_id, group_id, last_access_time, last_modification_time, creation_time) -> None:
+        def __init__(self, name, extension, file_type, path, size, permissions, user_id, group_id, last_access_time, last_modification_time, creation_time) -> None:
             self.name = name
             self.extension = extension
+            self.file_type = file_type
             self.path = path
             self.size = size
             self.permissions = permissions
@@ -63,6 +64,7 @@ class TELFileManager:
             print(f'---------------------- | Info for "{self.name}" | ----------------------')
             print(f'Name:                     {self.name}')
             print(f'Extension:                {self.extension}')
+            print(f'File Type:                {self.file_type}')
             print(f'Path:                     {self.path}')
             print(f'Size:                     {self.size} bytes | {round(self.size / 1024, 4)} KB | {round(self.size / (1024 * 1024), 4)} MB | {round(self.size / (1024 * 1024 * 1024), 4)} GB')
             print(f'Permissions:              {self.permissions}')
@@ -249,8 +251,12 @@ class TELFileManager:
             return False
         except Exception as e:
             raise Exception(f"Error moving file: {e}")
-    
-    def search(self, dir: str, extensions: list[str] = None, keywords: list[str] = None, min_size: int = None, max_size: int = None):
+
+    def search(self, dir: str, extensions: list[str] = None, keywords: list[str] = None,
+            exclude_extensions: list[str] = None, exclude_keywords: list[str] = None,
+            exclude_dirs: list[str] = None, max_depth: int = None,
+            min_size: int = None, max_size: int = None,
+            list_empty_dirs: bool = False, divider: str = "\\"):
         '''
         ## Search Files
         ---
@@ -261,8 +267,14 @@ class TELFileManager:
             - `dir`: The directory in which to start the search.
             - `extensions`: A list of file extensions to filter by (optional).
             - `keywords`: A list of keywords to filter files by name (optional).
+            - `exclude_extensions`: A list of file extensions to exclude (optional).
+            - `exclude_keywords`: A list of keywords to exclude from file names (optional).
+            - `exclude_dirs`: A list of directory names to exclude (optional).
+            - `max_depth`: The maximum depth of recursion in the file structure (optional).
             - `min_size`: The minimum file size in bytes (optional).
             - `max_size`: The maximum file size in bytes (optional).
+            - `list_empty_dirs`: Whether to list directories even if there are no files in them (optional).
+            - `divider`: The directory separator character (optional).
         ---
         ### Return
             - A list of file paths that meet the specified search criteria.\n
@@ -280,32 +292,72 @@ class TELFileManager:
                     if re.match(r'[a-zA-Z0-9]+$', extension):
                         new_extensions.append(extension)
                     else:
-                        print(f'"{extension}" is not a valid extention')
+                        print(f'"{extension}" is not a valid extension')
                         continue
                 extensions = new_extensions
 
             found_files = []
+            found_empty_dirs = []  # Store empty directories if list_empty_dirs is True.
 
-            for root, _, files in os.walk(dir):
-                for file in files:
-                    file_path = os.path.join(root, file)
-                    file_size = os.path.getsize(file_path)
+            for root, dirs, files in os.walk(dir):
+                # Calculate the depth of the current directory.
+                depth = root[len(dir):].count(os.path.sep)
 
-                    if extensions and not any(file.endswith(ext) for ext in extensions):
-                        continue
+                # Check if the current directory should be excluded based on depth.
+                if max_depth is not None and depth > max_depth:
+                    continue
 
-                    if keywords and not all(keyword in file for keyword in keywords):
-                        continue
+                print(files)
+                print(dir)
+                print(root)
 
-                    if min_size is not None and file_size < min_size:
-                        continue
+                # Check if the current directory should be excluded based on name.
+                if exclude_dirs and not any(exclude_dir in dirs for exclude_dir in exclude_dirs):
+                    continue
 
-                    if max_size is not None and file_size > max_size:
-                        continue
+                if len(files) == 0:
+                    if list_empty_dirs:
+                        found_empty_dirs.append(root)
+                else:
+                    for file in files:
+                        file_path = os.path.join(root, file)
+                        file_size = os.path.getsize(file_path)
 
-                    found_files.append(file_path)
+                        # Check if the file should be excluded based on extensions or keywords.
+                        if (exclude_extensions and any(file.endswith(ext) for ext in exclude_extensions)) or \
+                        (exclude_keywords and any(keyword in file for keyword in exclude_keywords)):
+                            continue
 
-            return found_files
+                        # Check if the file meets the inclusion criteria.
+                        if extensions and not any(file.endswith(ext) for ext in extensions):
+                            continue
+
+                        if keywords and not all(keyword in file for keyword in keywords):
+                            continue
+
+                        if min_size is not None and file_size < min_size:
+                            continue
+
+                        if max_size is not None and file_size > max_size:
+                            continue
+
+                        found_files.append(file_path)
+
+            new_found_files = []
+            new_found_empty_dirs = []
+
+            for file_path in found_files:
+                file_path = file_path.replace("\\", divider)
+                new_found_files.append(file_path)
+            
+            for empty_dir in found_empty_dirs:
+                empty_dir = empty_dir.replace("\\", divider)
+                new_found_empty_dirs.append(empty_dir)
+
+            if list_empty_dirs:
+                new_found_files.extend(new_found_empty_dirs)
+
+            return new_found_files
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
 
@@ -332,7 +384,8 @@ class TELFileManager:
 
         file_info = self.File(
             name = os.path.basename(file),
-            extension = str(os.path.basename(file)).split(".")[-1],
+            extension = str(os.path.basename(file)).split(".")[-1] if os.path.isfile(os.path.abspath(file)) else "Folder",
+            file_type = "File" if os.path.isfile(os.path.abspath(file)) else "Folder",
             path = os.path.abspath(file),
             size = stat_info.st_size,
             permissions = stat_info.st_mode,
