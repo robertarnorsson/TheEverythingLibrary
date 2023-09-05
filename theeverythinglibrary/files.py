@@ -316,15 +316,18 @@ class TELFileManager:
             max_depth = depth - 1 if depth is not None else None
 
             def file_generator(root):
-                for entry in os.scandir(root):
-                    if entry.is_file():
-                        file_path = entry.path
-                        if should_include(file_path) and not should_exclude(file_path):
-                            yield normalize_path(file_path)
-                    elif entry.is_dir():
-                        if max_depth is None or root[len(dir):].count(os.path.sep) <= max_depth:
-                            if not exclude_dirs or not any(exclude_dir in entry.name for exclude_dir in exclude_dirs):
-                                yield from file_generator(entry.path)
+                try:
+                    for entry in os.scandir(root):
+                        if entry.is_file():
+                            file_path = entry.path
+                            if should_include(file_path) and not should_exclude(file_path):
+                                yield normalize_path(file_path)
+                        elif entry.is_dir():
+                            if max_depth is None or root[len(dir):].count(os.path.sep) <= max_depth:
+                                if not exclude_dirs or not any(exclude_dir in entry.name for exclude_dir in exclude_dirs):
+                                    yield from file_generator(entry.path)
+                except PermissionError:
+                    return
 
             def dir_generator(root):
                 for entry in os.scandir(root):
