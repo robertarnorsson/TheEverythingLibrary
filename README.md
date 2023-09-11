@@ -45,6 +45,7 @@ from theeverythinglibrary.encryption import TELSymmetric, TELAsymmetric
 from theeverythinglibrary.enviroment import TELEnviroment
 from theeverythinglibrary.exceptions import InvalidFilenameError, InvalidColor
 from theeverythinglibrary.files import TELFileManager
+from theeverythinglibrary.hashing import TELHash
 from theeverythinglibrary.math import TELMath
 from theeverythinglibrary.regex import TELRegex
 from theeverythinglibrary.sorting import TELSorting, TELSearching
@@ -100,6 +101,13 @@ print(decoded_text)
 - Copy files from one directory to different directory
 - Move files from one directory to different directory
 - Advanced recursive file searching
+
+### Hashing
+- Generate salt
+- Generate pepper
+- Hash a password
+- Verify a hash
+- Hash a file
 
 ### Math Functions
 - Add two numbers
@@ -268,3 +276,15 @@ Please try and use the formatting rules from the [FORMATTING.md](https://github.
 
 * Fixes to file search
 * Fixed some regex
+
+0.3.8 (2023-09-12)
+------------------
+
+* Added hashing support
+
+------------------
+<br>
+<br>
+<div align="center">
+<h2>Hope you enjoy!</h2>
+</div>

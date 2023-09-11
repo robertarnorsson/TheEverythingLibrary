@@ -5,7 +5,7 @@ with open('README.md') as readme_file:
 
 setup(
     name="theeverythinglibrary",
-    version="0.3.7",
+    version="0.3.8",
     description="Library with a module for almost everything",
     url="https://github.com/RobertArnosson/TheEverythingLibrary",
     author="Robert Arnorsson",
@@ -26,6 +26,8 @@ setup(
     packages=find_packages(),
     install_requires= [
         "cryptography",
+        "hashlib",
+        "argon2",
         "uuid",
         "requests",
         "googletrans"
