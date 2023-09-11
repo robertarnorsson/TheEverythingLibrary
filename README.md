@@ -262,3 +262,9 @@ Please try and use the formatting rules from the [FORMATTING.md](https://github.
 ------------------
 
 * Rewrote file search for improved performance (works but might find bugs)
+
+0.3.7 (2023-09-11)
+------------------
+
+* Fixes to file search
+* Fixed some regex
