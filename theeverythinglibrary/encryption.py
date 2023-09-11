@@ -71,30 +71,26 @@ class TELSymmetric:
 
             salt = os.urandom(self.salt_length)
 
-            # Generate a key using PBKDF2HMAC
             kdf = PBKDF2HMAC(
                 algorithm=hashes.SHA384(),
                 salt=salt,
-                iterations=self.iterations,  # Use a larger iteration count for increased security
+                iterations=self.iterations,
                 length=self.key_length,
                 backend=default_backend()
             )
             key = kdf.derive(password)
 
-            # Generate a random nonce
             nonce = os.urandom(32) + uuid.uuid4().bytes + uuid.uuid4().bytes
             
-            # Use AES-GCM for authenticated encryption
             cipher = Cipher(algorithms.AES(key), modes.GCM(nonce))
             encryptor = cipher.encryptor()
             ciphertext = encryptor.update(plaintext) + encryptor.finalize()
 
-            # Serialize the nonce and tag with the ciphertext
             ciphertext_with_nonce_tag = encryptor.tag + ciphertext
 
             return base64.urlsafe_b64encode(salt + nonce + ciphertext_with_nonce_tag).decode()
         except Exception as e:
-            raise Exception(f"Something whent wrong: {e}")
+            raise Exception(f"Something went wrong: {e}")
         
     def decrypt(self, ciphertext: str, password: str) -> str:
         '''

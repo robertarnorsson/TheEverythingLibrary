@@ -330,26 +330,37 @@ class TELFileManager:
                     return
 
             def dir_generator(root):
-                for entry in os.scandir(root):
-                    if entry.is_dir():
-                        if max_depth is None or root[len(dir):].count(os.path.sep) <= max_depth:
-                            if not exclude_dirs or not any(exclude_dir in entry.name for exclude_dir in exclude_dirs):
-                                if last_item:
-                                    yield normalize_path(entry.path)
-                                else:
-                                    yield from dir_generator(entry.path)
+                try:
+                    for entry in os.scandir(root):
+                        if entry.is_dir():
+                            if max_depth is None or root[len(dir):].count(os.path.sep) <= max_depth:
+                                if not exclude_dirs or not any(exclude_dir in entry.name for exclude_dir in exclude_dirs):
+                                    if last_item:
+                                        yield normalize_path(entry.path)
+                                    else:
+                                        yield from dir_generator(entry.path)
+                except PermissionError:
+                    return
 
             normalize_path = lambda path: path.replace("\\", divider)
 
-            with concurrent.futures.ThreadPoolExecutor() as executor:
-                found_files = list(executor.map(file_generator, [dir]))
-                if list_dirs:
-                    if last_item:
-                        found_dirs = list(executor.map(dir_generator, [dir]))
-                    else:
-                        found_dirs = list(dir_generator(dir))
-                else:
-                    found_dirs = []
+            found_files = []
+            found_dirs = []
+
+            for entry in os.scandir(dir):
+                if entry.is_file():
+                    file_path = entry.path
+                    if should_include(file_path) and not should_exclude(file_path):
+                        found_files.append(normalize_path(file_path))
+                elif entry.is_dir():
+                    if not list_dirs:
+                        continue
+                    if max_depth is None or entry.path[len(dir):].count(os.path.sep) <= max_depth:
+                        if not exclude_dirs or not any(exclude_dir in entry.name for exclude_dir in exclude_dirs):
+                            if last_item:
+                                found_dirs.append(normalize_path(entry.path))
+                            else:
+                                found_dirs.extend(dir_generator(entry.path))
 
             return found_files + found_dirs
 
