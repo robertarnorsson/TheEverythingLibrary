@@ -1,6 +1,7 @@
 import os
 import argon2
 import hashlib
+import base64
 
 class TELHash:
     '''
@@ -14,73 +15,77 @@ class TELHash:
     def __init__(self):
         pass
 
-    def generate_salt(self, salt_len: int = 16) -> str:
+    def generate_salt(self, length: int = 16) -> str:
         '''
         ## Generate salt
         ---
         Generates a random salt for password hashing.\n
         ---
         ### Arguments:
-            - `salt_len` (optional): The length of the generated salt in bytes (default is `16`).\n
+            - `length` (optional): The length of the generated salt in bytes (default is `16`).\n
         ---
         ### Returns:
             - The randomly generated salt in hexadecimal format.\n
         '''
         try:
-            salt = os.urandom(salt_len).hex()
+            salt = os.urandom(length).hex()
             return salt
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
 
-    def generate_pepper(self, pepper_len: int = 16) -> str:
-        '''
-        ## Generate pepper
-        ---
-        Generates a random pepper for password hashing.\n
-        ---
-        ### Arguments:
-            - `pepper_len` (optional): The length of the generated pepper in bytes (default is `16`).\n
-        ---
-        ### Returns:
-            - The randomly generated pepper in hexadecimal format.\n
-        '''
-        try:
-            pepper = os.urandom(pepper_len).hex()
-            return pepper
-        except Exception as e:
-                raise Exception(f"Something went wrong: {e}")
-
-    def hash(self, password: str, salt: str, pepper: str) -> str:
+    def hash(self, password: str, salt: str, pepper: str | None = None, encode_hash: bool = True, params: dict | None = None) -> str:
         '''
         ## Hash password
         ---
-        Hashes a password using Argon2 with a given salt and pepper.
+        Hashes a password using Argon2 with a given salt and pepper.\n
         ---
         ### Arguments:
-            - `password`: The password to be hashed.
-            - `salt`: The salt used for password hashing.
-            - `pepper`: The pepper used for password hashing.
+            - `password`: The password to be hashed.\n
+            - `salt`: The salt used for password hashing.\n
+            - `pepper` (optional): The pepper used for password hashing (default is `None`).\n
+            - `params` (optional): Additional parameters for the hashing function (default is `None`).\n
+            Available parameters\n
+            ```python
+            params = {
+                "hash_len": 80,
+                "salt_len": 16,
+                "time_cost": 10,
+                "memory_cost": 2**12,
+                "parallelism": 6,
+                "encoding": 'ascii'
+            }
+            ```
         ---
         ### Returns:
-            - The hashed password.
-        ---
-        ### Note:
-        The generated hash is encoded in ASCII and can be securely stored.
+            - The hashed password.\n
         '''
         try:
-            password += salt
-            password += pepper
+            password = f"{salt}{password}"
+            password if pepper == None else f"{password}{pepper}"
+
+            default_params = {
+                "hash_len": 80,
+                "salt_len": len(salt),
+                "time_cost": 10,
+                "memory_cost": 2**12,
+                "parallelism": 6,
+                "encoding": 'ascii'
+            }
+
+            if params != None and params != {}:
+                default_params.update(params)
 
             hasher = argon2.PasswordHasher(
-                hash_len=80,
-                salt_len=32,
-                time_cost=10,
-                memory_cost=2**12,
-                parallelism=6,
-                encoding='ascii'
+                hash_len=default_params["hash_len"],
+                salt_len=default_params["salt_len"],
+                time_cost=default_params["time_cost"],
+                memory_cost=default_params["memory_cost"],
+                parallelism=default_params["parallelism"],
+                encoding=default_params["encoding"]
             )
             hashed_password = hasher.hash(password)
-            return hashed_password
+            encoded_hash = base64.urlsafe_b64encode(base64.a85encode(hashed_password.encode())).decode()
+            return encoded_hash if encode_hash else hashed_password
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
 
@@ -138,18 +143,18 @@ class TELHash:
         '''
         ## Hash File
         ---
-        Calculates the hash of a file for integrity checks using a specified algorithm (default is `SHA-256`).
+        Calculates the hash of a file for integrity checks using a specified algorithm (default is `SHA-256`).\n
         ---
         ### Arguments:
-            - `file_path`: The path to the file to be hashed.
-            - `algorithm` (optional): The hashing algorithm to use (default is `sha256`). Supported algorithms: `sha1`, `sha256`, `sha384`, `sha512`, `md5`.
-            - `as_upper` (optional): Should return hash in upper case (default is `True`).
+            - `file_path`: The path to the file to be hashed.\n
+            - `algorithm` (optional): The hashing algorithm to use (default is `sha256`). Supported algorithms: `sha1`, `sha256`, `sha384`, `sha512`, `md5`.\n
+            - `as_upper` (optional): Should return hash in upper case (default is `True`).\n
         ---
         ### Returns:
-            - The hash of the file in hexadecimal format.
+            - The hash of the file in hexadecimal format.\n
         ---
         ### Exceptions:
-            - If an error occurs during file reading or hashing or an error occurs something else.
+            - If an error occurs during file reading or hashing or an error occurs something else.\n
         '''
         try:
             if algorithm == 'sha1':
@@ -170,6 +175,26 @@ class TELHash:
                     if not data:
                         break
                     hash_object.update(data)
-            return (hash_object.hexdigest()).upper() if as_upper else hash_object.hexdigest()
+            return (hash_object.hexdigest()).upper() if as_upper else (hash_object.hexdigest()).lower()
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
+        
+
+tel_hash = TELHash()
+
+text1 = "Passw0rd"
+text2 = "Passw0rdLooonger123"
+text3 = "Passw0rdSUUUUPPPERRRRLOOOOOONNNG!!!"
+text4 = "Passw0rdSUUUUPPPERRRRLOOOOOONNNG!!!-----------------SUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUPPPPPPPPPPPPPPPPPPPEEEEEEEEEEEEEEEEEEERRRRRRRRRRRRRRRRRRRRRRRLLLLLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOONNNNNNNNNNNNNNNNNNNNGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------SuperLong"
+
+salt = tel_hash.generate_salt(length=32)
+
+hashed_password1 = tel_hash.hash(text1, salt=salt, params={"hash_len": 12})
+hashed_password2 = tel_hash.hash(text2, salt=salt, encode_hash=False, params={"hash_len": 10})
+hashed_password3 = tel_hash.hash(text3, salt=salt)
+hashed_password4 = tel_hash.hash(text4, salt=salt)
+
+print(hashed_password1)
+print(hashed_password2)
+print(hashed_password3)
+print(hashed_password4)

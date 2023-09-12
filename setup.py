@@ -27,7 +27,7 @@ setup(
     install_requires= [
         "cryptography",
         "hashlib",
-        "argon2",
+        "argon2-cffi",
         "uuid",
         "requests",
         "googletrans"
