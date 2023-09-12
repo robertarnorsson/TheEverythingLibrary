@@ -84,8 +84,7 @@ class TELHash:
                 encoding=default_params["encoding"]
             )
             hashed_password = hasher.hash(password)
-            encoded_hash = base64.urlsafe_b64encode(base64.a85encode(hashed_password.encode())).decode()
-            return encoded_hash if encode_hash else hashed_password
+            return hashed_password if not encode_hash else base64.urlsafe_b64encode(base64.a85encode(hashed_password.encode())).decode()
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
 
