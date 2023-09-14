@@ -6,7 +6,7 @@
 <br/>
 <a href="https://pypi.org/project/theeverythinglibrary/" target="_blank"><img src="https://img.shields.io/pypi/v/theeverythinglibrary?style=for-the-badge&logo=pypi&logoColor=%2327CC88&label=Version&labelColor=%23061122&color=%2327CC88"></a>
 <a href="https://pypi.org/project/theeverythinglibrary/" target="_blank"><img src="https://img.shields.io/badge/python-3.9%2B-green?style=for-the-badge&logo=python&logoColor=%2327CC88&label=Python&labelColor=%23061122&color=%2327CC88"></a>
-<a href="https://pypi.org/project/theeverythinglibrary/" target="_blank"><img src="https://img.shields.io/github/stars/RobertArnosson/TheEverythingLibrary?style=for-the-badge&logo=github&logoColor=%2327CC88&label=Stars&labelColor=%23061122&color=%2327CC88"></a>
+<a href="https://github.com/RobertArnosson/TheEverythingLibrary" target="_blank"><img src="https://img.shields.io/github/stars/RobertArnosson/TheEverythingLibrary?style=for-the-badge&logo=github&logoColor=%2327CC88&label=Stars&labelColor=%23061122&color=%2327CC88"></a>
 <a href="https://pypistats.org/packages/theeverythinglibrary" target="_blank"><img src="https://img.shields.io/pypi/dm/theeverythinglibrary?style=for-the-badge&logo=docusign&logoColor=%2327CC88&label=Downloads&labelColor=%23061122&color=%2327CC88"></a>
 <a href="https://pypi.org/project/theeverythinglibrary/" target="_blank"><img src="https://img.shields.io/pypi/status/theeverythinglibrary?style=for-the-badge&logoColor=%2327CC88&label=Status&labelColor=%23061122&color=%2327CC88"></a>
 <a href="https://pypi.org/project/theeverythinglibrary/" target="_blank"><img src="https://img.shields.io/pypi/l/theeverythinglibrary?style=for-the-badge&logoColor=%2327CC88&label=License&labelColor=%23061122&color=%2327CC88"></a>
@@ -281,6 +281,11 @@ Please try and use the formatting rules from the [FORMATTING.md](https://github.
 ------------------
 
 * Added hashing support
+
+0.3.9 (2023-09-14)
+------------------
+
+* Fixes to hashing and setup requirements
 
 ------------------
 <br>
