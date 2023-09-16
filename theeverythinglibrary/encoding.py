@@ -150,7 +150,9 @@ class TELEncoding:
         '''
         try:
             if type(encoded_text) == str:
-                binary_list = encoded_text.split()
+                chunk_size = 8
+                encoded_text = encoded_text.replace(" ", "")
+                binary_list = [encoded_text[i:i+chunk_size] for i in range(0, len(encoded_text), chunk_size)]
                 decoded_string = ''.join(chr(int(binary, 2)) for binary in binary_list)
             elif type(encoded_text) == bytes:
                 decoded_string = ''.join(chr(byte) for byte in encoded_text)
