@@ -12,6 +12,7 @@ class TELSorting:
     def __init__(self) -> None:
         pass
 
+    @staticmethod
     def bubble_sort(self, arr: list[int | float]) -> list[int | float]:
         '''
         ## Bubble Sort
@@ -38,6 +39,7 @@ class TELSorting:
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
     
+    @staticmethod
     def selection_sort(self, arr: list[int | float]) -> list[int | float]:
         '''
         ## Selection Sort
@@ -66,6 +68,7 @@ class TELSorting:
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
     
+    @staticmethod
     def insertion_sort(self, arr: list[int | float]) -> list[int | float]:
         '''
         ## Insertion Sort
@@ -169,7 +172,7 @@ class TELSorting:
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
     
-    def bogo_sort(self, arr: list[int | float]) -> list[int | float]:
+    def bogo_sort(arr: list[int | float]) -> list[int | float]:
         '''
         ## Bogo Sort
         ---
@@ -204,7 +207,8 @@ class TELSearching:
     def __init__(self) -> None:
         pass
 
-    def linear_search(self, arr: list[int | float], target: int | float):
+    @staticmethod
+    def linear_search(arr: list[int | float], target: int | float):
         '''
         ## Linear Search
         ---
@@ -229,7 +233,8 @@ class TELSearching:
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
 
-    def binary_search(self, arr: list[int | float], target: int | float):
+    @staticmethod
+    def binary_search(arr: list[int | float], target: int | float):
         '''
         ## Binary Search
         ---
@@ -260,7 +265,8 @@ class TELSearching:
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
     
-    def search(self, arr: list, target, comparison_func=None):
+    @staticmethod
+    def search(arr: list, target, comparison_func=None):
         '''
         ## Generic Search
         ---

@@ -10,7 +10,8 @@ class TELMath:
     def __init__(self) -> None:
         pass
 
-    def add(self, x: int | float | str, y: int | float | str) -> float:
+    @staticmethod
+    def add(x: int | float | str, y: int | float | str) -> float:
         '''
         ## Addition
         ---
@@ -31,8 +32,9 @@ class TELMath:
             return float(x + y)
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
-
-    def add_list(self, arr: list[int | float | str]) -> float:
+        
+    @staticmethod
+    def add_list(arr: list[int | float | str]) -> float:
         '''
         ## Addition of List
         ---
@@ -67,7 +69,8 @@ class TELMath:
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
     
-    def subtract(self, x: int | float | str, y: int | float | str) -> float:
+    @staticmethod
+    def subtract(x: int | float | str, y: int | float | str) -> float:
         '''
         ## Subtraction
         ---
@@ -141,7 +144,8 @@ class TELMath:
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
     
-    def median(self, arr: list[int | float | str]) -> float:
+    @staticmethod
+    def median(arr: list[int | float | str]) -> float:
         '''
         ## Median
         ---

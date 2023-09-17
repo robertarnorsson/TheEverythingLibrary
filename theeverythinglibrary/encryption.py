@@ -154,7 +154,8 @@ class TELAsymmetric:
     def __init__(self) -> None:
         pass
 
-    def generate_key_pair(self) -> Tuple[rsa.RSAPrivateKey, rsa.RSAPublicKey]:
+    @staticmethod
+    def generate_key_pair() -> Tuple[rsa.RSAPrivateKey, rsa.RSAPublicKey]:
         '''
         ## Generate Key Pair
         ---
@@ -178,7 +179,8 @@ class TELAsymmetric:
         except Exception as e:
             raise Exception(f"Something whent wrong: {e}")
 
-    def encrypt(self, plaintext: str, public_key: rsa.RSAPublicKey) -> str:
+    @staticmethod
+    def encrypt(plaintext: str, public_key: rsa.RSAPublicKey) -> str:
         '''
         ## Encrypt
         ---
@@ -208,7 +210,8 @@ class TELAsymmetric:
         except Exception as e:
             raise Exception(f"Something whent wrong: {e}")
 
-    def decrypt(self, ciphertext: str, private_key: rsa.RSAPrivateKey) -> str:
+    @staticmethod
+    def decrypt(ciphertext: str, private_key: rsa.RSAPrivateKey) -> str:
         '''
         ## Decrypt
         ---
@@ -242,7 +245,8 @@ class TELAsymmetric:
         except Exception as e:
             raise Exception(f"Something whent wrong: {e}")
     
-    def store_private_key(self, private_key: rsa.RSAPrivateKey, password: str, path: str, file_name: str = "private_key") -> None:
+    @staticmethod
+    def store_private_key(private_key: rsa.RSAPrivateKey, password: str, path: str, file_name: str = "private_key") -> None:
         '''
         ## Store Private Key
         ---
@@ -272,7 +276,8 @@ class TELAsymmetric:
         except Exception as e:
             raise Exception(f"Something whent wrong: {e}")
     
-    def store_public_key(self, public_key: rsa.RSAPrivateKey, path: str, file_name: str = "public_key") -> None:
+    @staticmethod
+    def store_public_key(public_key: rsa.RSAPrivateKey, path: str, file_name: str = "public_key") -> None:
         '''
         ## Store Public Key
         ---
@@ -300,7 +305,8 @@ class TELAsymmetric:
         except Exception as e:
             raise Exception(f"Something whent wrong: {e}")
     
-    def get_private_key(self, password: str, path: str, file_name: str = "private_key") -> rsa.RSAPrivateKey:
+    @staticmethod
+    def get_private_key(password: str, path: str, file_name: str = "private_key") -> rsa.RSAPrivateKey:
         '''
         ## Get Private Key
         ---
@@ -337,7 +343,8 @@ class TELAsymmetric:
         except Exception as e:
             raise Exception(f"Something whent wrong: {e}")
     
-    def get_public_key(self, path: str, file_name: str = "public_key") -> rsa.RSAPublicKey:
+    @staticmethod
+    def get_public_key(path: str, file_name: str = "public_key") -> rsa.RSAPublicKey:
         '''
         ## Get Public Key
         ---

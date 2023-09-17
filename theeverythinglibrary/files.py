@@ -100,7 +100,8 @@ class TELFileManager:
     def __init__(self) -> None:
         pass
 
-    def create_dir(self, dir: str) -> str:
+    @staticmethod
+    def create_dir(dir: str) -> str:
         '''
         ## Create Directory
         ---
@@ -122,7 +123,8 @@ class TELFileManager:
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
 
-    def delete_dir(self, dir: str) -> bool:
+    @staticmethod
+    def delete_dir(dir: str) -> bool:
         '''
         ## Delete Directory
         ---
@@ -146,7 +148,8 @@ class TELFileManager:
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
 
-    def create_file(self, dir: str, name: str, type: str) -> None:
+    @staticmethod
+    def create_file(dir: str, name: str, type: str) -> None:
         '''
         ## Create File
         ---
@@ -170,8 +173,9 @@ class TELFileManager:
                 file.close()
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
-
-    def delete_file(self, file: str) -> None:
+    
+    @staticmethod
+    def delete_file(file: str) -> None:
         '''
         ## Delete File
         ---
@@ -192,8 +196,9 @@ class TELFileManager:
             os.remove(file)
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
-
-    def list_files(self, dir: str) -> list[str]:
+    
+    @staticmethod
+    def list_files(dir: str) -> list[str]:
         '''
         ## List Files
         ---
@@ -216,8 +221,9 @@ class TELFileManager:
             return []
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
-
-    def copy_directory(self, dir: str, dest_dir: str) -> bool:
+    
+    @staticmethod
+    def copy_directory(dir: str, dest_dir: str) -> bool:
         '''
         ## Copy Directory
         ---
@@ -242,8 +248,9 @@ class TELFileManager:
             return False
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
-
-    def move_file(self, file: str, dest_dir: str) -> bool:
+    
+    @staticmethod
+    def move_file(file: str, dest_dir: str) -> bool:
         '''
         ## Move File
         ---
@@ -270,8 +277,9 @@ class TELFileManager:
             return False
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
-    
-    def move_directory(self, dir: str, dest_dir: str) -> bool:
+
+    @staticmethod
+    def move_directory(dir: str, dest_dir: str) -> bool:
         '''
         ## Move Directory
         ---
@@ -296,8 +304,9 @@ class TELFileManager:
             return False
         except Exception as e:
             raise Exception(f"Error moving directory: {e}")
-
-    def search(self, dir: str, extensions: list[str] = None, keywords: list[str] = None,
+    
+    @staticmethod
+    def search(dir: str, extensions: list[str] = None, keywords: list[str] = None,
                exclude_extensions: list[str] = None, exclude_keywords: list[str] = None,
                exclude_dirs: list[str] = None, depth: int = None,
                min_size: int = None, max_size: int = None,
@@ -444,7 +453,8 @@ class TELFileManager:
 
         return file_info
     
-    def convert(self, bytes: int, unit: str, decimals: int = 4) -> float:
+    @staticmethod
+    def convert(bytes: int, unit: str, decimals: int = 4) -> float:
         '''
         ## Convert Bytes
         ---

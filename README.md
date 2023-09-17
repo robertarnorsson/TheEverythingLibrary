@@ -297,6 +297,11 @@ Please try and use the formatting rules from the [FORMATTING.md](https://github.
 * Added copy dir
 * Added move dir
 
+0.3.11 (2023-09-17)
+------------------
+
+* Added `@staticmethod` to any function that supports it
+
 ------------------
 <br>
 <br>

@@ -12,7 +12,8 @@ class TELEnviroment:
     def __init__(self):
         pass
 
-    def set(self, name: str, value):
+    @staticmethod
+    def set(name: str, value):
         '''
         ## Set Environment Variable
         ---
@@ -30,8 +31,8 @@ class TELEnviroment:
             os.environ[name] = value
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
-
-    def get(self, name: str):
+    @staticmethod
+    def get(name: str):
         '''
         ## Get Environment Variable
         ---
@@ -51,8 +52,8 @@ class TELEnviroment:
             return os.environ.get(name)
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
-
-    def remove(self, name: str):
+    @staticmethod
+    def remove(name: str):
         '''
         ## Remove Environment Variable
         ---
@@ -71,7 +72,8 @@ class TELEnviroment:
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
 
-    def list_all(self):
+    @staticmethod
+    def list_all():
         '''
         ## List All Environment Variables
         ---
@@ -88,8 +90,8 @@ class TELEnviroment:
             return os.environ
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
-
-    def exists(self, name: str):
+    @staticmethod
+    def exists(name: str):
         '''
         ## Check if Environment Variable Exists
         ---
@@ -109,8 +111,9 @@ class TELEnviroment:
             return name in os.environ
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
-
-    def get_multiple(self, names: list[str]):
+        
+    @staticmethod
+    def get_multiple(names: list[str]):
         '''
         ## Get Multiple Environment Variables
         ---
@@ -133,8 +136,9 @@ class TELEnviroment:
             return values
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
-
-    def update(self, name: str, value):
+        
+    @staticmethod
+    def update(name: str, value):
         '''
         ## Update Environment Variable
         ---
@@ -153,8 +157,9 @@ class TELEnviroment:
                 os.environ[name] = value
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
-
-    def append(self, name: str, value):
+        
+    @staticmethod
+    def append(name: str, value):
         '''
         ## Append to Environment Variable
         ---
@@ -175,8 +180,9 @@ class TELEnviroment:
                 os.environ[name] = new_value
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
-
-    def prepend(self, name: str, value):
+        
+    @staticmethod
+    def prepend(name: str, value):
         '''
         ## Prepend to Environment Variable
         ---
@@ -197,8 +203,9 @@ class TELEnviroment:
                 os.environ[name] = new_value
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
-
-    def restore(self, name: str, original_value):
+        
+    @staticmethod
+    def restore(name: str, original_value):
         '''
         ## Restore Environment Variable
         ---

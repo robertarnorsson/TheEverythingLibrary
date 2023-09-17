@@ -92,7 +92,7 @@ class TELRegex:
             - If an error occurs during matching.\n
         '''
         try:
-            pattern_to_use = pattern if pattern is not None else self.default_pattern
+            pattern_to_use = pattern if pattern is not None else self.common_patterns
             return re.match(pattern_to_use, text)
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
@@ -115,7 +115,7 @@ class TELRegex:
             - If an error occurs during searching.\n
         '''
         try:
-            pattern_to_use = pattern if pattern is not None else self.default_pattern
+            pattern_to_use = pattern if pattern is not None else self.common_patterns
             return re.search(pattern_to_use, text)
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
@@ -138,7 +138,7 @@ class TELRegex:
             - If an error occurs during finding.\n
         '''
         try:
-            pattern_to_use = pattern if pattern is not None else self.default_pattern
+            pattern_to_use = pattern if pattern is not None else self.common_patterns
             return re.findall(pattern_to_use, text)
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
@@ -161,7 +161,7 @@ class TELRegex:
             - If an error occurs during finding.\n
         '''
         try:
-            pattern_to_use = pattern if pattern is not None else self.default_pattern
+            pattern_to_use = pattern if pattern is not None else self.common_patterns
             return re.finditer(pattern_to_use, text)
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
@@ -185,7 +185,7 @@ class TELRegex:
             - If an error occurs during replacement.\n
         '''
         try:
-            pattern_to_use = pattern if pattern is not None else self.default_pattern
+            pattern_to_use = pattern if pattern is not None else self.common_patterns
             return re.sub(pattern_to_use, replacement, text)
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")

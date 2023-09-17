@@ -1,6 +1,7 @@
 import os
 from theeverythinglibrary.exceptions import InvalidColor
 
+@staticmethod
 def cprint(text: str, color=None, bg_color=None):
     '''
     ## Print Colored Text
@@ -51,7 +52,8 @@ class TELUtilities:
     def __init__(self) -> None:
         pass
 
-    def project_path(self) -> str:
+    @staticmethod
+    def project_path() -> str:
         '''
         ## Get Project Path
         ---
@@ -63,7 +65,8 @@ class TELUtilities:
         '''
         return os.path.abspath(os.path.dirname(__file__))
 
-    def project_file_path(self) -> str:
+    @staticmethod
+    def project_file_path() -> str:
         '''
         ## Get Project File Path
         ---

@@ -12,7 +12,8 @@ class TELHTTP:
     def __init__(self):
         pass
 
-    def get(self, url: str, params=None, headers=None) -> requests.Response:
+    @staticmethod
+    def get(url: str, params=None, headers=None) -> requests.Response:
         '''
         ## GET Request
         ---
@@ -37,7 +38,8 @@ class TELHTTP:
         except Exception as e:
             raise Exception(f"Something whent wrong: {e}")
 
-    def post(self, url, data=None, json=None, headers=None) -> requests.Response:
+    @staticmethod
+    def post(url, data=None, json=None, headers=None) -> requests.Response:
         '''
         ## POST Request
         ---
@@ -62,7 +64,8 @@ class TELHTTP:
         except Exception as e:
             raise Exception(f"Something whent wrong: {e}")
 
-    def put(self, url, data=None, json=None, headers=None):
+    @staticmethod
+    def put(url, data=None, json=None, headers=None):
         '''
         ## PUT Request
         ---
@@ -87,7 +90,8 @@ class TELHTTP:
         except Exception as e:
             raise Exception(f"Something whent wrong: {e}")
 
-    def delete(self, url, headers=None):
+    @staticmethod
+    def delete(url, headers=None):
         '''
         ## DELETE Request
         ---
@@ -110,7 +114,8 @@ class TELHTTP:
         except Exception as e:
             raise Exception(f"Something whent wrong: {e}")
 
-    def download(self, url, local_path):
+    @staticmethod
+    def download(url, local_path):
         '''
         ## Download File
         ---
@@ -132,7 +137,8 @@ class TELHTTP:
         except Exception as e:
             raise Exception(f"Something whent wrong: {e}")
     
-    def status(self, code: int, long_desc: bool = False):
+    @staticmethod
+    def status(code: int, long_desc: bool = False):
         '''
         ## HTTP Status Description
         ---

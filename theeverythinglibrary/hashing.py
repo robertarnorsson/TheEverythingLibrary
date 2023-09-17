@@ -15,7 +15,8 @@ class TELHash:
     def __init__(self):
         pass
 
-    def generate_salt(self, length: int = 16) -> str:
+    @staticmethod
+    def generate_salt(length: int = 16) -> str:
         '''
         ## Generate salt
         ---
@@ -33,7 +34,8 @@ class TELHash:
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
 
-    def hash(self, password: str, salt: str, pepper: str | None = None, encode_hash: bool = True, params: dict | None = None) -> str:
+    @staticmethod
+    def hash(password: str, salt: str, pepper: str | None = None, encode_hash: bool = True, params: dict | None = None) -> str:
         '''
         ## Hash password
         ---
@@ -94,7 +96,8 @@ class TELHash:
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
 
-    def verify(self, hashed_password: str, password: str, salt: str, pepper: str | None = None, params: dict | None = None, raise_error: bool = False, return_reason: bool = False) -> bool:
+    @staticmethod
+    def verify(hashed_password: str, password: str, salt: str, pepper: str | None = None, params: dict | None = None, raise_error: bool = False, return_reason: bool = False) -> bool:
         '''
         ## Verify hash
         ---
@@ -159,7 +162,8 @@ class TELHash:
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
     
-    def hash_file(self, file: str, algorithm: str = 'sha256', as_upper: bool = False) -> str:
+    @staticmethod
+    def hash_file(file: str, algorithm: str = 'sha256', as_upper: bool = False) -> str:
         '''
         ## Hash File
         ---
@@ -189,9 +193,9 @@ class TELHash:
                 hash_object = hashlib.md5()
             else:
                 raise ValueError("Invalid hashing algorithm. Supported algorithms: 'sha1', 'sha256', 'sha384', 'sha512', 'md5'")
-            with open(file, "rb") as file:
+            with open(file, "rb") as f:
                 while True:
-                    data = file.read(65536)
+                    data = f.read(65536)
                     if not data:
                         break
                     hash_object.update(data)

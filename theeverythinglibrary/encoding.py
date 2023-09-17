@@ -12,7 +12,8 @@ class TELEncoding:
     def __init__(self) -> None:
         pass
 
-    def base64_encode(self, plaintext: str, encoding: str = 'utf-8') -> str:
+    @staticmethod
+    def base64_encode(plaintext: str, encoding: str = 'utf-8') -> str:
         '''
         ## Base64 Encode
         ---
@@ -36,7 +37,8 @@ class TELEncoding:
         except Exception as e:
             raise Exception(f"Something whent wrong: {e}")
 
-    def base64_decode(self, encoded_text: str, encoding: str = 'utf-8') -> str:
+    @staticmethod
+    def base64_decode(encoded_text: str, encoding: str = 'utf-8') -> str:
         '''
         ## Base64 Decode
         ---
@@ -60,7 +62,8 @@ class TELEncoding:
         except Exception as e:
             raise Exception(f"Something whent wrong: {e}")
 
-    def hex_encode(self, plaintext: str, encoding: str = 'utf-8') -> str:
+    @staticmethod
+    def hex_encode(plaintext: str, encoding: str = 'utf-8') -> str:
         '''
         ## Hexadecimal Encode
         ---
@@ -83,7 +86,8 @@ class TELEncoding:
         except Exception as e:
             raise Exception(f"Something whent wrong: {e}")
 
-    def hex_decode(self, encoded_text: str, encoding: str = 'utf-8') -> str:
+    @staticmethod
+    def hex_decode(encoded_text: str, encoding: str = 'utf-8') -> str:
         '''
         ## Hexadecimal Decode
         ---
@@ -106,7 +110,8 @@ class TELEncoding:
         except Exception as e:
             raise Exception(f"Something whent wrong: {e}")
 
-    def binary_encode(self, plaintext: str, as_bytes: bool = False, chunk_size: int = 8) -> str | bytes:
+    @staticmethod
+    def binary_encode(plaintext: str, as_bytes: bool = False, chunk_size: int = 8) -> str | bytes:
         '''
         ## Binary Encode
         ---
@@ -138,7 +143,8 @@ class TELEncoding:
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
 
-    def binary_decode(self, encoded_text: str | bytes, as_text: bool = True, chunk_size: int = 8) -> str:
+    @staticmethod
+    def binary_decode(encoded_text: str | bytes, as_text: bool = True, chunk_size: int = 8) -> str:
         '''
         ## Binary Decode
         ---

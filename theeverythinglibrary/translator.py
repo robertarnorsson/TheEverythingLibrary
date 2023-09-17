@@ -37,7 +37,8 @@ class TELTranslator:
         except Exception as e:
             raise Exception(f"Something went wrong: {e}")
     
-    def get_languages(self) -> dict:
+    @staticmethod
+    def get_languages() -> dict:
         '''
         ## Get Supported Languages
         ---
