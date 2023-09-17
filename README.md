@@ -120,6 +120,11 @@ print(decoded_text)
 - Find average from list of numbers
 - Find median from list of numbers
 
+### Password
+- Set password policy
+- Generate password
+- Check password with policy
+
 ### Regular expression
 - Match
 - Search
@@ -301,6 +306,13 @@ Please try and use the formatting rules from the [FORMATTING.md](https://github.
 ------------------
 
 * Added `@staticmethod` to any function that supports it
+
+0.3.12 (2023-09-17)
+------------------
+
+* Added password generation
+* Added password policy
+* Added password policy checking
 
 ------------------
 <br>

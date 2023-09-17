@@ -23,15 +23,16 @@ class TELSymmetric:
 
     def __init__(self, iterations: int = 100000, salt_length: int = 32, key_length: int = 32) -> None:
         '''
-        ## Constructor
+        ## Symmetric Encryption
         ---
-        ### Description
-        Initialize the TELSymmetric encryption utility.\n
+        This class provides utility functions for encrypting and decrypting text.\n
         ---
         ### Arguments
-            - `iterations` (optional): The number of PBKDF2 iterations (default is 100000).
-            - `salt_length` (optional): The length of the salt in bytes (default is 32).
+            - `iterations` (optional): The number of PBKDF2 iterations (default is 100000).\n
+            - `salt_length` (optional): The length of the salt in bytes (default is 32).\n
             - `key_length` (optional): The length of the encryption key in bytes (default is 32).\n
+
+        **Note:** This class is a work in progress and subject to further development.
         '''
         if iterations < 100000:
             self.iterations = 100000

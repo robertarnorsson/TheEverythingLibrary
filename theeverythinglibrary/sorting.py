@@ -13,7 +13,7 @@ class TELSorting:
         pass
 
     @staticmethod
-    def bubble_sort(self, arr: list[int | float]) -> list[int | float]:
+    def bubble_sort(arr: list[int | float]) -> list[int | float]:
         '''
         ## Bubble Sort
         ---
@@ -40,7 +40,7 @@ class TELSorting:
             raise Exception(f"Something went wrong: {e}")
     
     @staticmethod
-    def selection_sort(self, arr: list[int | float]) -> list[int | float]:
+    def selection_sort(arr: list[int | float]) -> list[int | float]:
         '''
         ## Selection Sort
         ---
@@ -69,7 +69,7 @@ class TELSorting:
             raise Exception(f"Something went wrong: {e}")
     
     @staticmethod
-    def insertion_sort(self, arr: list[int | float]) -> list[int | float]:
+    def insertion_sort(arr: list[int | float]) -> list[int | float]:
         '''
         ## Insertion Sort
         ---
