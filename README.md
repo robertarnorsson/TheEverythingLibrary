@@ -290,6 +290,13 @@ Please try and use the formatting rules from the [FORMATTING.md](https://github.
 
 * Fixes to hashing and setup requirements
 
+0.3.10 (2023-09-17)
+------------------
+
+* Fixed and improvements to encoding
+* Added copy dir
+* Added move dir
+
 ------------------
 <br>
 <br>
