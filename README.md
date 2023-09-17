@@ -47,6 +47,7 @@ from theeverythinglibrary.exceptions import InvalidFilenameError, InvalidColor
 from theeverythinglibrary.files import TELFileManager
 from theeverythinglibrary.hashing import TELHash
 from theeverythinglibrary.math import TELMath
+from theeverythinglibrary.password import TELPassword
 from theeverythinglibrary.regex import TELRegex
 from theeverythinglibrary.sorting import TELSorting, TELSearching
 from theeverythinglibrary.translator import TELTranslator
