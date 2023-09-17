@@ -95,16 +95,19 @@ print(decoded_text)
 - Restore variable
 
 ### File Managment
+- Create file
 - Create directory
+- Delete file
 - Delete directory
 - List files in directory
+- Copy file to directory
 - Copy files from one directory to different directory
+- Move file to directory
 - Move files from one directory to different directory
 - Advanced recursive file searching
 
 ### Hashing
 - Generate salt
-- Generate pepper
 - Hash a password
 - Verify a hash
 - Hash a file

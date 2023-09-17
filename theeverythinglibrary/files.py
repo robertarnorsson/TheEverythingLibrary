@@ -2,7 +2,6 @@ import os
 import re
 import shutil
 import datetime
-import concurrent.futures
 
 class TELFileManager:
     '''
@@ -75,14 +74,33 @@ class TELFileManager:
             print(f'Last Modification Time:   {self.last_modification_time}')
             print(f'Creation Time:            {self.creation_time}')
         
-        def content(self):
-            with open(self.path) as f:
-                return f.read()
+        def read(self):
+            '''
+            ## Read
+            ---
+            ### Description
+            Read the contents of a file form the `File` class.\n
+            ---
+            ### Arguments
+                - None\n
+            ---
+            ### Return
+                - Contents of the file.\n
+            ---
+            ### Exceptions
+                - If an error occurs during reading of the file.\n
+            '''
+            try:
+                if os.path.isfile(self.path):
+                    with open(self.path, 'r') as f:
+                        return f.read()
+            except Exception as e:
+                raise Exception(f"Something went wrong: {e}")
     
     def __init__(self) -> None:
         pass
 
-    def create_directory(self, dir: str) -> str:
+    def create_dir(self, dir: str) -> str:
         '''
         ## Create Directory
         ---
@@ -101,12 +119,10 @@ class TELFileManager:
         try:
             os.makedirs(dir, exist_ok=True)
             return dir
-        except OSError as e:
-            raise OSError(f"Error creating directory: {e}")
         except Exception as e:
-            raise Exception(f"Error creating directory: {e}")
+            raise Exception(f"Something went wrong: {e}")
 
-    def delete_directory(self, dir: str) -> bool:
+    def delete_dir(self, dir: str) -> bool:
         '''
         ## Delete Directory
         ---
@@ -128,7 +144,7 @@ class TELFileManager:
                 return True
             return False
         except Exception as e:
-            raise Exception(f"Error deleting directory: {e}")
+            raise Exception(f"Something went wrong: {e}")
 
     def create_file(self, dir: str, name: str, type: str) -> None:
         '''
@@ -153,7 +169,7 @@ class TELFileManager:
             with open(os.path.join(dir, f'{name}.{type}'), 'w+') as file:
                 file.close()
         except Exception as e:
-            raise Exception(f"Error creating file: {e}")
+            raise Exception(f"Something went wrong: {e}")
 
     def delete_file(self, file: str) -> None:
         '''
@@ -175,7 +191,7 @@ class TELFileManager:
         try:
             os.remove(file)
         except Exception as e:
-            raise Exception(f"Error deleting file: {e}")
+            raise Exception(f"Something went wrong: {e}")
 
     def list_files(self, dir: str) -> list[str]:
         '''
@@ -199,35 +215,33 @@ class TELFileManager:
                 return files
             return []
         except Exception as e:
-            raise Exception(f"Error listing files: {e}")
+            raise Exception(f"Something went wrong: {e}")
 
-    def copy_file(self, file: str, dest_dir: str) -> bool:
+    def copy_directory(self, dir: str, dest_dir: str) -> bool:
         '''
-        ## Copy File
+        ## Copy Directory
         ---
         ### Description
-        Copy a file to a destination directory.\n
+        Copy a directory and its contents to a destination directory.\n
         ---
         ### Arguments
-            - `file`: The path of the file to copy.
+            - `dir`: The path of the directory to copy.
             - `dest_dir`: The destination directory path.\n
         ---
         ### Return
-            - `True` if the file was copied successfully, otherwise `False`.\n
+            - `True` if the directory was copied successfully, otherwise `False`.\n
         ---
         ### Exceptions
             - If an error occurs during copying.\n
         '''
-        file = file.replace("/", "\\")
-        file_name = file.split('\\')[len(file.split('\\'))-1]
-        path_to_file = file.replace(file_name, "")
+        dir = dir.replace("/", "\\")
         try:
-            if os.path.exists(path_to_file) and os.path.isfile(file):
-                shutil.copy(file, dest_dir)
+            if os.path.exists(dir) and os.path.isdir(dir):
+                shutil.copytree(dir, os.path.join(dest_dir, os.path.basename(dir)))
                 return True
             return False
         except Exception as e:
-            raise Exception(f"Error copying file: {e}")
+            raise Exception(f"Something went wrong: {e}")
 
     def move_file(self, file: str, dest_dir: str) -> bool:
         '''
@@ -255,7 +269,33 @@ class TELFileManager:
                 return True
             return False
         except Exception as e:
-            raise Exception(f"Error moving file: {e}")
+            raise Exception(f"Something went wrong: {e}")
+    
+    def move_directory(self, dir: str, dest_dir: str) -> bool:
+        '''
+        ## Move Directory
+        ---
+        ### Description
+        Move a directory and its contents to a destination directory.\n
+        ---
+        ### Arguments
+            - `dir`: The path of the directory to move.
+            - `dest_dir`: The destination directory path.\n
+        ---
+        ### Return
+            - `True` if the directory was moved successfully, otherwise `False`.\n
+        ---
+        ### Exceptions
+            - If an error occurs during moving.\n
+        '''
+        dir = dir.replace("/", "\\")
+        try:
+            if os.path.exists(dir) and os.path.isdir(dir):
+                shutil.move(dir, dest_dir)
+                return True
+            return False
+        except Exception as e:
+            raise Exception(f"Error moving directory: {e}")
 
     def search(self, dir: str, extensions: list[str] = None, keywords: list[str] = None,
                exclude_extensions: list[str] = None, exclude_keywords: list[str] = None,
