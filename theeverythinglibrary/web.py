@@ -110,7 +110,7 @@ class TELHTTP:
         except Exception as e:
             raise Exception(f"Something whent wrong: {e}")
 
-    def download_file(self, url, local_path):
+    def download(self, url, local_path):
         '''
         ## Download File
         ---
