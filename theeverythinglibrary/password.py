@@ -1,5 +1,7 @@
 import random
 import string
+import os
+import re
 
 class TELPassword:
     '''
@@ -17,7 +19,7 @@ class TELPassword:
         ---
         This class provides utility functions for password policies, password generation and passwor checks.\n
         ---
-        ### Arguments
+        ### Arguments (sets the policy)
             - `min_length` (optional): Minimum allowed length of password (default is `8`).\n
             - `require_uppercase` (optional): Does the password require uppercase (default is `True`).\n
             - `require_lowercase` (optional): Does the password require lowercase (default is `True`).\n
@@ -66,16 +68,16 @@ class TELPassword:
         except Exception as e:
             raise Exception(f"Something whent wrong: {e}")
 
-    def generate_password(self, length: int = 12, custom_characters: str = '', raise_error: bool = False) -> str | bool:
+    def generate_password(self, length: int = 8, custom_characters: str = '', raise_error: bool = False) -> str | bool:
         '''
         ## Generate password
         ---
         ### Description
-        Generate a random password based on the password policy.\n
+        Generate a random password based on the password policy or custom character regex.\n
         ---
         ### Arguments:
             - `length` (optional): Length of the generated password (default is `8`).\n
-            - `custom_characters` (optional): Use custom characters instead of the normal ones (default is `''`). **Note:** This will override the password policy!\n
+            - `custom_characters` (optional): Use custom characters (regex) instead of the normal ones (default is `''`). **Note:** This will override the password policy!\n
             - `raise_error` (optional): Should raise an error when the policy is not met (default is `True`).\n
         ---
         ### Return
@@ -89,28 +91,41 @@ class TELPassword:
                 raise ValueError(f"Password length must be at least {self.password_policy['min_length']} characters.")
             return False
 
-        characters = ''
         password = ''
+
+        def urandom_choice(_list):
+            # Generate random bytes from os.urandom
+            random_bytes = os.urandom(8)  # You can adjust the number of bytes as needed
+
+            # Convert the random bytes to an integer index
+            index = int.from_bytes(random_bytes, byteorder='big') % len(_list)
+
+            # Return the randomly selected item from the list
+            return _list[index]
 
         # Ensure at least one character from each required category
         if self.password_policy['require_uppercase']:
-            characters += string.ascii_uppercase
-            password += random.choice(string.ascii_uppercase)
+            password += urandom_choice(string.ascii_uppercase)
 
         if self.password_policy['require_lowercase']:
-            characters += string.ascii_lowercase
-            password += random.choice(string.ascii_lowercase)
+            password += urandom_choice(string.ascii_lowercase)
 
         if self.password_policy['require_digit']:
-            characters += string.digits
-            password += random.choice(string.digits)
+            password += urandom_choice(string.digits)
 
         if self.password_policy['require_special_char']:
-            characters += string.punctuation
-            password += random.choice(string.punctuation)
+            password += urandom_choice(string.punctuation)
 
         remaining_length = max(0, length - len(password))
-        password += ''.join(random.choice(custom_characters if custom_characters else characters) for _ in range(remaining_length))
+
+        # Use custom_characters if provided (as regex), otherwise use the default character sets
+        if custom_characters:
+            custom_characters_regex = re.compile(custom_characters)
+            custom_characters_pool = ''.join(re.findall(custom_characters_regex, string.printable))
+            password += ''.join(urandom_choice(custom_characters_pool) for _ in range(remaining_length))
+        else:
+            characters = string.ascii_letters + string.digits + string.punctuation
+            password += ''.join(urandom_choice(characters) for _ in range(remaining_length))
 
         password_list = list(password)
         random.shuffle(password_list)
